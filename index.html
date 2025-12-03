@@ -9,9 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>John | Growth Engineer & Marketer</title>
-    
     <link rel="stylesheet" href="style.css">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
@@ -21,24 +19,23 @@
     <header>
         <div class="container">
             <nav>
-                <a href="#" class="logo">John.Dev</a>
+                <a href="index.html" class="logo">John.Dev</a>
                 <div class="nav-links">
-                    <a href="#about" class="active">About</a>
-                    <a href="#stack">Tech Stack</a>
-                    <a href="#tools" style="color: white; font-weight: 600;">Tools</a>
-                </div>
+                    <a href="index.html" class="active">About</a>
+                    <a href="index.html#stack">Tech Stack</a>
+                    <a href="tools.html">Tools</a> </div>
             </nav>
         </div>
     </header>
 
-    <section class="hero" id="about">
+    <section class="hero">
         <div class="container">
             <h1>The Bridge Between<br><span>Marketing & Code.</span></h1>
             <p>
                 I don't just run ads. I build the infrastructure that tracks them.
                 Specialized in Python automation, Server-Side Tracking, and Technical SEO.
             </p>
-            <a href="#tools" class="btn btn-primary">Try My Tools <i class="fas fa-arrow-right" style="margin-left:8px;"></i></a>
+            <a href="tools.html" class="btn btn-primary">Try My Tools <i class="fas fa-arrow-right" style="margin-left:8px;"></i></a>
         </div>
     </section>
 
@@ -84,137 +81,10 @@
         </div>
     </section>
 
-    <section class="section-padding" id="tools" style="background: #080A0E;">
-        <div class="container">
-            
-            <div class="tool-wrapper">
-                <div class="tool-header">
-                    <span style="color: var(--primary); font-weight:bold; letter-spacing: 1px; font-size:0.8rem;">FREE UTILITY</span>
-                    <h2>UTM Campaign Builder</h2>
-                    <p>Standardize your tracking parameters instantly. Matches Google's specifications.</p>
-                </div>
-
-                <form id="utmForm">
-                    <div class="form-group full-width">
-                        <label>Website URL *</label>
-                        <input type="url" id="baseUrl" placeholder="https://www.yourdomain.com" required>
-                    </div>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Campaign ID (utm_id)</label>
-                            <input type="text" id="utmId" placeholder="e.g. abc.123">
-                        </div>
-                        <div class="form-group">
-                            <label>Campaign Name (utm_campaign) *</label>
-                            <input type="text" id="utmCampaign" placeholder="e.g. summer_sale" required>
-                        </div>
-                    </div>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Campaign Source (utm_source) *</label>
-                            <input type="text" id="utmSource" placeholder="e.g. google, newsletter" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Campaign Medium (utm_medium) *</label>
-                            <input type="text" id="utmMedium" placeholder="e.g. cpc, email" required>
-                        </div>
-                    </div>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Campaign Term (utm_term)</label>
-                            <input type="text" id="utmTerm" placeholder="Identify the paid keywords">
-                        </div>
-                        <div class="form-group">
-                            <label>Campaign Content (utm_content)</label>
-                            <input type="text" id="utmContent" placeholder="Use to differentiate ads">
-                        </div>
-                    </div>
-                </form>
-
-                <div class="result-box">
-                    <div id="finalUrl" class="generated-url">Fill in the fields to generate URL...</div>
-                    <button class="copy-btn" onclick="copyToClipboard()" title="Copy to Clipboard">
-                        <i class="fas fa-copy"></i>
-                    </button>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
     <footer>
         <div class="container">
             <p>&copy; 2025 John. Built with custom code & performance in mind.</p>
         </div>
     </footer>
-
-    <script>
-        // UTM Builder Logic
-        const inputs = document.querySelectorAll('#utmForm input');
-        const display = document.getElementById('finalUrl');
-
-        function generateURL() {
-            // Get all values
-            const urlVal = document.getElementById('baseUrl').value.trim();
-            const source = document.getElementById('utmSource').value.trim();
-            const medium = document.getElementById('utmMedium').value.trim();
-            const campaign = document.getElementById('utmCampaign').value.trim();
-            const id = document.getElementById('utmId').value.trim();
-            const term = document.getElementById('utmTerm').value.trim();
-            const content = document.getElementById('utmContent').value.trim();
-
-            if (!urlVal) {
-                display.style.color = '#94A3B8'; // Muted color
-                display.textContent = 'Enter a valid Website URL to start...';
-                return;
-            }
-
-            try {
-                // Auto-add https if missing
-                let finalBase = urlVal;
-                if (!/^https?:\/\//i.test(finalBase)) {
-                    finalBase = 'https://' + finalBase;
-                }
-
-                const urlObj = new URL(finalBase);
-                
-                // Add parameters only if they exist
-                if (source) urlObj.searchParams.set('utm_source', source);
-                if (medium) urlObj.searchParams.set('utm_medium', medium);
-                if (campaign) urlObj.searchParams.set('utm_campaign', campaign);
-                if (id) urlObj.searchParams.set('utm_id', id);       // Added Logic
-                if (term) urlObj.searchParams.set('utm_term', term); // Added Logic
-                if (content) urlObj.searchParams.set('utm_content', content);
-
-                display.style.color = '#10B981'; // Success color
-                display.textContent = urlObj.toString();
-            } catch (e) {
-                display.textContent = 'Invalid URL format';
-            }
-        }
-
-        // Add event listeners to all inputs
-        inputs.forEach(input => {
-            input.addEventListener('input', generateURL);
-        });
-
-        // Copy Functionality
-        function copyToClipboard() {
-            const textToCopy = display.textContent;
-            if (textToCopy.startsWith('http')) {
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    const btn = document.querySelector('.copy-btn');
-                    const originalIcon = btn.innerHTML;
-                    btn.innerHTML = '<i class="fas fa-check"></i>';
-                    setTimeout(() => {
-                        btn.innerHTML = originalIcon;
-                    }, 2000);
-                });
-            }
-        }
-    </script>
 </body>
 </html>
