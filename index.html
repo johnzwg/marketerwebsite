@@ -6,167 +6,212 @@
     <title>John | Performance Marketer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Setup & Variables */
         :root {
-            --primary-color: #2563eb;
-            --text-color: #1f2937;
-            --bg-color: #f3f4f6;
-            --card-bg: #ffffff;
+            --bg-dark: #0f172a; /* Dark Blue Background */
+            --card-dark: #1e293b; /* Lighter Blue for Cards */
+            --accent-blue: #60a5fa; /* Light Blue Text/Accents */
+            --text-white: #f8fafc;
+            --text-gray: #94a3b8;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-dark);
+            color: var(--text-white);
             line-height: 1.6;
-        }
-
-        nav {
-            background: var(--card-bg);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            margin-left: 2rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary-color);
+            padding: 20px;
         }
 
         .container {
-            max-width: 1000px;
-            margin: 4rem auto;
-            padding: 0 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 60px;
         }
 
-        .profile-section {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
+        /* --- HERO SECTION (Όπως στην εικόνα) --- */
+        .hero-section {
+            margin-bottom: 100px;
+            max-width: 800px;
+        }
+
+        .eyebrow {
+            color: var(--accent-blue);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #111;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            font-weight: 800;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-bottom: 2rem;
-            font-weight: 600;
+        .highlight-blue {
+            color: var(--accent-blue);
         }
 
-        .bio-text {
-            color: #4b5563;
-            margin-bottom: 1.5rem;
+        .hero-desc {
+            color: var(--text-gray);
             font-size: 1.1rem;
-        }
-
-        .cta-buttons {
-            margin-top: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            margin-right: 1rem;
+            max-width: 600px;
+            margin-bottom: 30px;
         }
 
         .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
+            background-color: #e2e8f0;
+            color: #0f172a;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: background 0.3s;
         }
 
         .btn-primary:hover {
-            background-color: #1d4ed8;
-            transform: translateY(-2px);
+            background-color: #fff;
         }
 
-        .btn-outline {
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
+        /* --- TECH STACK SECTION --- */
+        .stack-header {
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 15px;
+            margin-bottom: 40px;
         }
 
-        .btn-outline:hover {
-            background-color: var(--primary-color);
-            color: white;
+        .stack-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
         }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .tech-card {
+            background-color: var(--card-dark);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid #334155;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: #ec4899; /* Pinkish icon color like image, or use accent-blue */
+        }
+        
+        /* Specific colors for icons based on image vibe */
+        .icon-analytics { color: #34d399 !important; } /* Greenish */
+        .icon-marketing { color: #f472b6 !important; } /* Pinkish */
+        .icon-dev { color: #60a5fa !important; } /* Blueish */
+
+        .tech-list {
+            list-style: none;
+        }
+
+        .tech-list li {
+            color: var(--text-gray);
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        /* Το τριγωνάκι δίπλα από κάθε skill */
+        .tech-list li::before {
+            content: "▶";
+            font-size: 8px;
+            color: var(--accent-blue);
+            position: absolute;
+            left: 0;
+            top: 7px;
+        }
+
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-content">
-            <a href="index.html" class="logo">John.Link</a>
-            <div class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                <a href="tools.html">My Tech Stack</a>
-            </div>
-        </div>
-    </nav>
 
     <div class="container">
-        <section class="profile-section">
-            <h1>Hi, I'm John.</h1>
-            <div class="subtitle">Performance Marketer</div>
-            
-            <p class="bio-text">
-                Results-oriented Performance Specialist with hands-on expertise across Google Ads, Meta Ads, Microsoft Ads, and TikTok Ads. I design and manage high-impact, full-funnel campaigns that align with business objectives and deliver measurable growth in ROI and conversions.
+        
+        <section class="hero-section">
+            <span class="eyebrow">Data-Driven Growth Strategies</span>
+            <h1>
+                Bridging the gap between<br>
+                <span class="highlight-blue">Marketing</span> & <span class="highlight-blue">Code</span>.
+            </h1>
+            <p class="hero-desc">
+                I don't just run ads. I build the tracking infrastructure that makes them profitable. Specialized in Technical SEO, Advanced GTM Implementations, and GA4 Audits.
             </p>
-
-            <p class="bio-text">
-                Skilled in end-to-end campaign execution, including keyword strategy, audience targeting, ad creative testing, and performance analysis. I bring strong technical acumen in conversion tracking, GTM implementation, and cross-platform attribution, ensuring data integrity and actionable insights.
-            </p>
-
-            <p class="bio-text">
-                Proficient in Python and SQL for data querying and automation, and experienced with advanced visualization tools such as Looker Studio, Tableau, and Power BI. I also hold in-depth knowledge of Google Analytics (GA4) and user behavior analysis.
-            </p>
-
-            <p class="bio-text">
-                I combine creative thinking with analytical rigor to craft scalable strategies that connect brands with their ideal audience, optimize ad spend, and maximize results across the digital ecosystem.
-            </p>
-
-            <div class="cta-buttons">
-                <a href="mailto:your-email@example.com" class="btn btn-primary">Contact Me</a>
-                <a href="tools.html" class="btn btn-outline">View My Stack</a>
-            </div>
+            <a href="#" class="btn-primary">View My Projects</a>
         </section>
+
+
+        <div class="stack-header">
+            <h2>My Tech Stack</h2>
+        </div>
+
+        <div class="grid-container">
+            
+            <div class="tech-card">
+                <div class="card-title">
+                    <i class="fas fa-chart-bar icon-analytics"></i> Analytics & Tracking
+                </div>
+                <ul class="tech-list">
+                    <li>Google Analytics 4 (Advanced)</li>
+                    <li>Google Tag Manager (Server-Side & Client)</li>
+                    <li>Looker Studio</li>
+                    </ul>
+            </div>
+
+            <div class="tech-card">
+                <div class="card-title">
+                    <i class="fas fa-rocket icon-marketing"></i> Marketing
+                </div>
+                <ul class="tech-list">
+                    <li>Paid Search (Google Ads, Microsoft Ads)</li>
+                    <li>Paid Social (Meta Ads, TikTok Ads, Snapchat Ads)</li>
+                    <li>Technical SEO</li>
+                </ul>
+            </div>
+
+            <div class="tech-card">
+                <div class="card-title">
+                    <i class="fas fa-laptop-code icon-dev"></i> Development
+                </div>
+                <ul class="tech-list">
+                    <li>Python</li> <li>SQL</li>
+                    <li>HTML5 & CSS3</li>
+                    <li>JavaScript</li>
+                    <li>Git & GitHub</li>
+                </ul>
+            </div>
+
+        </div>
+
     </div>
+
 </body>
 </html>
