@@ -1,118 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PDJVZZZ6');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John | Technical Marketer & Web Analyst</title>
-    <link rel="stylesheet" href="style.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>John | Performance Marketer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --text-color: #1f2937;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        nav {
+            background: var(--card-bg);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .profile-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #111;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .bio-text {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-buttons {
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-right: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDJVZZZ6"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <nav class="navbar">
-        <div class="logo">&lt;John /&gt;</div>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#stack">Tech Stack</a></li>
-            <li><a href="#projects">The Lab</a></li>
-            <li><a href="#contact" class="cta-btn">Let's Talk Data</a></li>
-        </ul>
+    <nav>
+        <div class="nav-content">
+            <a href="index.html" class="logo">John.Link</a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="tools.html">My Tech Stack</a>
+            </div>
+        </div>
     </nav>
 
-    <header class="hero" id="about">
-        <div class="container">
-            <p class="hero-subtitle">DATA-DRIVEN GROWTH STRATEGIES</p>
-            <h1 class="hero-title">Bridging the gap between <br> <span class="highlight">Marketing</span> & <span class="highlight">Code</span>.</h1>
-            <p class="hero-desc">
-                I don't just run ads. I build the tracking infrastructure that makes them profitable.
-                Specialized in Technical SEO, Advanced GTM Implementations, and GA4 Audits.
+    <div class="container">
+        <section class="profile-section">
+            <h1>Hi, I'm John.</h1>
+            <div class="subtitle">Performance Marketer</div>
+            
+            <p class="bio-text">
+                Results-oriented Performance Specialist with hands-on expertise across Google Ads, Meta Ads, Microsoft Ads, and TikTok Ads. I design and manage high-impact, full-funnel campaigns that align with business objectives and deliver measurable growth in ROI and conversions.
             </p>
-            <div class="hero-actions">
-                <a href="#projects" class="btn btn-primary">View My Projects</a>
-            </div>
-        </div>
-    </header>
 
-    <section id="stack" class="section">
-        <div class="container">
-            <h2 class="section-title">My Tech Stack</h2>
-            <div class="stack-grid">
-                <div class="stack-card">
-                    <h3>📊 Analytics & Tracking</h3>
-                    <ul>
-                        <li>Google Analytics 4 (Advanced)</li>
-                        <li>Google Tag Manager (Custom JS)</li>
-                        <li>Server-Side Tracking</li>
-                        <li>Looker Studio</li>
-                        <li>Microsoft Clarity / Hotjar</li>
-                    </ul>
-                </div>
-                <div class="stack-card">
-                    <h3>🚀 Marketing</h3>
-                    <ul>
-                        <li>Google Ads (Search, Shopping, PMax)</li>
-                        <li>Meta Ads (Facebook/Instagram)</li>
-                        <li>Technical SEO (Screaming Frog)</li>
-                        <li>Conversion Rate Optimization (CRO)</li>
-                    </ul>
-                </div>
-                <div class="stack-card">
-                    <h3>💻 Development</h3>
-                    <ul>
-                        <li>HTML5 & CSS3</li>
-                        <li>JavaScript (Data Layer manipulation)</li>
-                        <li>SQL (Basic)</li>
-                        <li>Git & GitHub</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title">The Lab</h2>
-            <div class="projects-grid">
-                
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Custom UTM Builder</h3>
-                        <span class="tag">MARKETING TOOL</span>
-                    </div>
-                    <p>A JavaScript-based tool designed to help marketers generate consistent and error-free tracking links for their campaigns.</p>
-                    <ul class="project-features">
-                        <li>✅ Real-time URL generation.</li>
-                        <li>✅ Auto-formatting (handling ? and &).</li>
-                        <li>✅ User-friendly copy-to-clipboard function.</li>
-                    </ul>
-                    <a href="tools.html" class="project-link">Try the Tool →</a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">&lt;John /&gt;</div>
-                <p>© 2024 John. Built by hand to demonstrate technical capability.</p>
-            </div>
-            <p class="easter-egg">
-                🤓 Psst... This site is hand-coded and tracked via a custom GTM container. 
-                Inspect the code (F12) to see the setup.
+            <p class="bio-text">
+                Skilled in end-to-end campaign execution, including keyword strategy, audience targeting, ad creative testing, and performance analysis. I bring strong technical acumen in conversion tracking, GTM implementation, and cross-platform attribution, ensuring data integrity and actionable insights.
             </p>
-        </div>
-    </footer>
 
+            <p class="bio-text">
+                Proficient in Python and SQL for data querying and automation, and experienced with advanced visualization tools such as Looker Studio, Tableau, and Power BI. I also hold in-depth knowledge of Google Analytics (GA4) and user behavior analysis.
+            </p>
+
+            <p class="bio-text">
+                I combine creative thinking with analytical rigor to craft scalable strategies that connect brands with their ideal audience, optimize ad spend, and maximize results across the digital ecosystem.
+            </p>
+
+            <div class="cta-buttons">
+                <a href="mailto:your-email@example.com" class="btn btn-primary">Contact Me</a>
+                <a href="tools.html" class="btn btn-outline">View My Stack</a>
+            </div>
+        </section>
+    </div>
 </body>
 </html>
