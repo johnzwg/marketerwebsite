@@ -1,217 +1,457 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PDJVZZZ6');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John | Performance Marketer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>John | Growth Engineer & Marketer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
     <style>
-        /* Setup & Variables */
+        /* --- CORE VARIABLES --- */
         :root {
-            --bg-dark: #0f172a; /* Dark Blue Background */
-            --card-dark: #1e293b; /* Lighter Blue for Cards */
-            --accent-blue: #60a5fa; /* Light Blue Text/Accents */
-            --text-white: #f8fafc;
-            --text-gray: #94a3b8;
+            --bg-body: #050507;
+            --bg-card: #0F1218;
+            --bg-card-hover: #161B24;
+            --primary: #3B82F6;
+            --primary-gradient: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+            --text-main: #FFFFFF;
+            --text-muted: #94A3B8;
+            --border: #1E293B;
+            --success: #10B981;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
+        /* --- RESET & TYPOGRAPHY --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-white);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            padding: 20px;
+            overflow-x: hidden;
         }
 
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- LAYOUT UTILITIES --- */
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding-top: 60px;
+            padding: 0 24px;
         }
 
-        /* --- HERO SECTION (Όπως στην εικόνα) --- */
-        .hero-section {
-            margin-bottom: 100px;
-            max-width: 800px;
+        .section-padding { padding: 100px 0; }
+
+        /* --- HEADER & NAV --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 5, 7, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
         }
 
-        .eyebrow {
-            color: var(--accent-blue);
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 15px;
-            display: block;
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
         }
 
-        h1 {
-            font-size: 3.5rem;
-            line-height: 1.1;
-            margin-bottom: 25px;
+        .logo {
             font-weight: 800;
+            font-size: 1.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .highlight-blue {
-            color: var(--accent-blue);
+        .nav-links a {
+            margin-left: 32px;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a.active { color: var(--text-main); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding-top: 180px;
+            padding-bottom: 120px;
+            text-align: center;
+            background: radial-gradient(circle at 50% 10%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
         }
 
-        .hero-desc {
-            color: var(--text-gray);
-            font-size: 1.1rem;
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
             max-width: 600px;
-            margin-bottom: 30px;
+            margin: 0 auto 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .btn-primary {
-            background-color: #e2e8f0;
-            color: #0f172a;
-            padding: 12px 24px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            transition: background 0.3s;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
         }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 30px -5px rgba(59, 130, 246, 0.5); }
 
-        .btn-primary:hover {
-            background-color: #fff;
-        }
-
-        /* --- TECH STACK SECTION --- */
-        .stack-header {
-            border-left: 4px solid var(--accent-blue);
-            padding-left: 15px;
-            margin-bottom: 40px;
-        }
-
-        .stack-header h2 {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-
-        .grid-container {
+        /* --- TECH STACK (GRID) --- */
+        .stack-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            gap: 24px;
+            margin-top: 40px;
         }
 
-        .tech-card {
-            background-color: var(--card-dark);
-            border-radius: 12px;
-            padding: 30px;
-            border: 1px solid #334155;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: 0.3s;
         }
 
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: 700;
+        .card:hover {
+            border-color: #3B82F6;
+            transform: translateY(-5px);
+            background: var(--bg-card-hover);
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
             margin-bottom: 20px;
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            background: rgba(59, 130, 246, 0.1);
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            border-radius: 12px;
         }
 
-        .card-title i {
-            color: #ec4899; /* Pinkish icon color like image, or use accent-blue */
-        }
+        .card h3 { margin-bottom: 16px; font-size: 1.2rem; }
         
-        /* Specific colors for icons based on image vibe */
-        .icon-analytics { color: #34d399 !important; } /* Greenish */
-        .icon-marketing { color: #f472b6 !important; } /* Pinkish */
-        .icon-dev { color: #60a5fa !important; } /* Blueish */
-
-        .tech-list {
-            list-style: none;
-        }
-
-        .tech-list li {
-            color: var(--text-gray);
-            margin-bottom: 12px;
+        .skill-list li {
+            margin-bottom: 10px;
+            color: var(--text-muted);
             font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+        .skill-list li::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        /* --- UTM TOOL SECTION (The Feature) --- */
+        .tool-wrapper {
+            background: #0B0E14;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-top: 20px;
+        }
+
+        .tool-header { margin-bottom: 30px; text-align: left; }
+        .tool-header h2 { font-size: 2rem; margin-bottom: 10px; }
+        .tool-header p { color: var(--text-muted); }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px;
+            background: #151921;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: white;
+            font-family: inherit;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus { border-color: var(--primary); }
+
+        .full-width { grid-column: 1 / -1; }
+
+        .result-box {
+            background: #11141C;
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 30px;
             position: relative;
-            padding-left: 20px;
         }
 
-        /* Το τριγωνάκι δίπλα από κάθε skill */
-        .tech-list li::before {
-            content: "▶";
-            font-size: 8px;
-            color: var(--accent-blue);
+        .generated-url {
+            color: var(--success);
+            font-family: 'Monaco', 'Consolas', monospace;
+            word-break: break-all;
+            margin-right: 40px;
+            font-size: 1rem;
+        }
+
+        .copy-btn {
             position: absolute;
-            left: 0;
-            top: 7px;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
         }
+        .copy-btn:hover { background: rgba(16, 185, 129, 0.2); }
 
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDJVZZZ6"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">John.Dev</a>
+                <div class="nav-links">
+                    <a href="#about" class="active">About</a>
+                    <a href="#stack">Tech Stack</a>
+                    <a href="#tools" style="color: white; font-weight: 600;">Tools</a>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-    <div class="container">
-        
-        <section class="hero-section">
-            <span class="eyebrow">Data-Driven Growth Strategies</span>
-            <h1>
-                Bridging the gap between<br>
-                <span class="highlight-blue">Marketing</span> & <span class="highlight-blue">Code</span>.
-            </h1>
-            <p class="hero-desc">
-                I don't just run ads. I build the tracking infrastructure that makes them profitable. Specialized in Technical SEO, Advanced GTM Implementations, and GA4 Audits.
+    <section class="hero" id="about">
+        <div class="container">
+            <h1>The Bridge Between<br><span>Marketing & Code.</span></h1>
+            <p>
+                I don't just run ads. I build the infrastructure that tracks them.
+                Specialized in Python automation, Server-Side Tracking, and Technical SEO.
             </p>
-            <a href="#" class="btn-primary">View My Projects</a>
-        </section>
-
-
-        <div class="stack-header">
-            <h2>My Tech Stack</h2>
+            <a href="#tools" class="btn btn-primary">Try My Tools <i class="fas fa-arrow-right" style="margin-left:8px;"></i></a>
         </div>
+    </section>
 
-        <div class="grid-container">
-            
-            <div class="tech-card">
-                <div class="card-title">
-                    <i class="fas fa-chart-bar icon-analytics"></i> Analytics & Tracking
-                </div>
-                <ul class="tech-list">
-                    <li>Google Analytics 4 (Advanced)</li>
-                    <li>Google Tag Manager (Server-Side & Client)</li>
-                    <li>Looker Studio</li>
+    <section class="section-padding" id="stack">
+        <div class="container">
+            <h2 style="font-size: 2rem; margin-bottom: 20px;">My Technical Arsenal</h2>
+            <div class="stack-grid">
+                
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-code"></i></div>
+                    <h3>Development</h3>
+                    <ul class="skill-list">
+                        <li>Python (Automation & Analysis)</li>
+                        <li>SQL (BigQuery)</li>
+                        <li>HTML5 / CSS3 / JS</li>
+                        <li>Git & GitHub</li>
                     </ul>
-            </div>
-
-            <div class="tech-card">
-                <div class="card-title">
-                    <i class="fas fa-rocket icon-marketing"></i> Marketing
                 </div>
-                <ul class="tech-list">
-                    <li>Paid Search (Google Ads, Microsoft Ads)</li>
-                    <li>Paid Social (Meta Ads, TikTok Ads, Snapchat Ads)</li>
-                    <li>Technical SEO</li>
-                </ul>
-            </div>
 
-            <div class="tech-card">
-                <div class="card-title">
-                    <i class="fas fa-laptop-code icon-dev"></i> Development
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>Analytics & Tracking</h3>
+                    <ul class="skill-list">
+                        <li>Google Analytics 4 (Advanced)</li>
+                        <li>GTM (Server-Side)</li>
+                        <li>Looker Studio / Power BI</li>
+                        <li>Attribution Modeling</li>
+                    </ul>
                 </div>
-                <ul class="tech-list">
-                    <li>Python</li> <li>SQL</li>
-                    <li>HTML5 & CSS3</li>
-                    <li>JavaScript</li>
-                    <li>Git & GitHub</li>
-                </ul>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Performance Marketing</h3>
+                    <ul class="skill-list">
+                        <li>Paid Search (Google/Microsoft)</li>
+                        <li>Paid Social (Meta/TikTok/Snap)</li>
+                        <li>Technical SEO</li>
+                        <li>Conversion Rate Optimization</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="tools" style="background: #080A0E;">
+        <div class="container">
+            
+            <div class="tool-wrapper">
+                <div class="tool-header">
+                    <span style="color: var(--primary); font-weight:bold; letter-spacing: 1px; font-size:0.8rem;">FREE UTILITY</span>
+                    <h2>UTM Campaign Builder</h2>
+                    <p>Standardize your tracking parameters instantly. No spreadsheets needed.</p>
+                </div>
+
+                <form id="utmForm">
+                    <div class="form-group full-width">
+                        <label>Website URL</label>
+                        <input type="url" id="baseUrl" placeholder="https://www.yourdomain.com" required>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Campaign Source (utm_source)</label>
+                            <input type="text" id="utmSource" placeholder="e.g. google, newsletter, facebook">
+                        </div>
+                        <div class="form-group">
+                            <label>Campaign Medium (utm_medium)</label>
+                            <input type="text" id="utmMedium" placeholder="e.g. cpc, email, banner">
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Campaign Name (utm_campaign)</label>
+                            <input type="text" id="utmCampaign" placeholder="e.g. summer_sale_2025">
+                        </div>
+                        <div class="form-group">
+                            <label>Campaign Content (Optional)</label>
+                            <input type="text" id="utmContent" placeholder="e.g. video_ad_A">
+                        </div>
+                    </div>
+                </form>
+
+                <div class="result-box">
+                    <div id="finalUrl" class="generated-url">Fill in the fields to generate URL...</div>
+                    <button class="copy-btn" onclick="copyToClipboard()" title="Copy to Clipboard">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
             </div>
 
         </div>
+    </section>
 
-    </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 John. Built with custom code & performance in mind.</p>
+        </div>
+    </footer>
 
+    <script>
+        // UTM Builder Logic
+        const inputs = document.querySelectorAll('#utmForm input');
+        const display = document.getElementById('finalUrl');
+
+        function generateURL() {
+            const urlVal = document.getElementById('baseUrl').value.trim();
+            const source = document.getElementById('utmSource').value.trim();
+            const medium = document.getElementById('utmMedium').value.trim();
+            const campaign = document.getElementById('utmCampaign').value.trim();
+            const content = document.getElementById('utmContent').value.trim();
+
+            if (!urlVal) {
+                display.style.color = '#94A3B8'; // Muted color
+                display.textContent = 'Enter a valid Website URL to start...';
+                return;
+            }
+
+            try {
+                // Auto-add https if missing
+                let finalBase = urlVal;
+                if (!/^https?:\/\//i.test(finalBase)) {
+                    finalBase = 'https://' + finalBase;
+                }
+
+                const urlObj = new URL(finalBase);
+                
+                if (source) urlObj.searchParams.set('utm_source', source);
+                if (medium) urlObj.searchParams.set('utm_medium', medium);
+                if (campaign) urlObj.searchParams.set('utm_campaign', campaign);
+                if (content) urlObj.searchParams.set('utm_content', content);
+
+                display.style.color = '#10B981'; // Success color
+                display.textContent = urlObj.toString();
+            } catch (e) {
+                display.textContent = 'Invalid URL format';
+            }
+        }
+
+        // Add event listeners to all inputs to update in real-time
+        inputs.forEach(input => {
+            input.addEventListener('input', generateURL);
+        });
+
+        // Copy Functionality
+        function copyToClipboard() {
+            const textToCopy = display.textContent;
+            if (textToCopy.startsWith('http')) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const btn = document.querySelector('.copy-btn');
+                    const originalIcon = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check"></i>';
+                    setTimeout(() => {
+                        btn.innerHTML = originalIcon;
+                    }, 2000);
+                });
+            }
+        }
+    </script>
 </body>
 </html>
