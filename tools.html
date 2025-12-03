@@ -1,199 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Stack | John</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<div class="stack-header" style="margin-top: 80px;">
+    <h2>UTM Builder Tool</h2>
+</div>
+
+<div class="tech-card" style="max-width: 800px;">
+    <p style="color: #94a3b8; margin-bottom: 20px;">
+        Generate trackable URLs for your campaigns instantly.
+    </p>
+
     <style>
-        :root {
-            --primary-color: #2563eb;
-            --text-color: #1f2937;
-            --bg-color: #f3f4f6;
-            --card-bg: #ffffff;
+        .input-group {
+            margin-bottom: 15px;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .input-group label {
+            display: block;
+            color: #e2e8f0;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
         }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #334155;
+            background-color: #0f172a; /* Dark background for inputs */
+            color: #f8fafc;
+            outline: none;
         }
-
-        nav {
-            background: var(--card-bg);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        .input-group input:focus {
+            border-color: #60a5fa; /* Blue border on focus */
         }
-
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .result-box {
+            background-color: #0f172a;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #334155;
+            color: #60a5fa;
+            font-family: monospace;
+            word-break: break-all;
+            margin-top: 20px;
+            display: none; /* Hidden by default */
         }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            text-decoration: none;
+        .btn-generate {
+            background-color: #60a5fa;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background 0.3s;
         }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            margin-left: 2rem;
-            font-weight: 500;
-            transition: color 0.3s;
+        .btn-generate:hover {
+            background-color: #3b82f6;
         }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary-color);
+        .copy-btn {
+            background-color: transparent;
+            border: 1px solid #60a5fa;
+            color: #60a5fa;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 10px;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-        }
-
-        .header-section {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .header-section h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #111;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .tool-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-icon {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: #111;
-        }
-
-        .tool-list {
-            list-style: none;
-        }
-
-        .tool-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #f3f4f6;
-            color: #4b5563;
-            display: flex;
-            align-items: center;
-        }
-
-        .tool-list li:last-child {
-            border-bottom: none;
-        }
-
-        .tool-list li::before {
-            content: "•";
-            color: var(--primary-color);
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
+        .copy-btn:hover {
+            background-color: #60a5fa;
+            color: white;
         }
     </style>
-</head>
-<body>
-    <nav>
-        <div class="nav-content">
-            <a href="index.html" class="logo">John.Link</a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="tools.html" class="active">My Tech Stack</a>
+
+    <form id="utmForm">
+        <div class="input-group">
+            <label>Website URL *</label>
+            <input type="url" id="baseUrl" placeholder="https://www.example.com" required>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div class="input-group">
+                <label>Campaign Source *</label>
+                <input type="text" id="utmSource" placeholder="google, facebook, newsletter" required>
+            </div>
+            <div class="input-group">
+                <label>Campaign Medium *</label>
+                <input type="text" id="utmMedium" placeholder="cpc, banner, email" required>
             </div>
         </div>
-    </nav>
 
-    <div class="container">
-        <div class="header-section">
-            <h1>My Tech Stack</h1>
-            <p>The tools and technologies I use to drive performance.</p>
+        <div class="input-group">
+            <label>Campaign Name</label>
+            <input type="text" id="utmCampaign" placeholder="summer_sale">
         </div>
 
-        <div class="grid-container">
-            
-            <div class="tool-card">
-                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
-                <h2 class="card-title">Analytics & Tracking</h2>
-                <ul class="tool-list">
-                    <li>Google Analytics (GA4)</li>
-                    <li>Google Tag Manager (GTM)</li>
-                </ul>
-            </div>
+        <button type="button" onclick="generateUTM()" class="btn-generate">Generate URL</button>
+    </form>
 
-            <div class="tool-card">
-                <div class="card-icon"><i class="fas fa-bullhorn"></i></div>
-                <h2 class="card-title">Marketing</h2>
-                <ul class="tool-list">
-                    <li>Paid Search (Google Ads, Microsoft Ads)</li>
-                    <li>Paid Social (Meta Ads, TikTok Ads, Snapchat Ads)</li>
-                    <li>Technical SEO</li>
-                </ul>
-            </div>
-
-            <div class="tool-card">
-                <div class="card-icon"><i class="fas fa-code"></i></div>
-                <h2 class="card-title">Development</h2>
-                <ul class="tool-list">
-                    <li>Python</li>
-                    <li>SQL</li>
-                </ul>
-            </div>
-
-            <div class="tool-card">
-                <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
-                <h2 class="card-title">Visualization</h2>
-                <ul class="tool-list">
-                    <li>Looker Studio</li>
-                    <li>Tableau</li>
-                    <li>Power BI</li>
-                </ul>
-            </div>
-
-        </div>
+    <div id="resultContainer" class="result-box">
+        <p id="finalUrl">Your URL will appear here...</p>
+        <button onclick="copyToClipboard()" class="copy-btn">Copy URL</button>
     </div>
-</body>
-</html>
+</div>
+
+<script>
+    function generateUTM() {
+        const baseUrl = document.getElementById('baseUrl').value.trim();
+        const source = document.getElementById('utmSource').value.trim();
+        const medium = document.getElementById('utmMedium').value.trim();
+        const campaign = document.getElementById('utmCampaign').value.trim();
+
+        if (!baseUrl || !source || !medium) {
+            alert("Please fill in the required fields (URL, Source, Medium)");
+            return;
+        }
+
+        // Build the URL
+        let url = new URL(baseUrl);
+        url.searchParams.set('utm_source', source);
+        url.searchParams.set('utm_medium', medium);
+        if (campaign) url.searchParams.set('utm_campaign', campaign);
+
+        // Display Result
+        const finalUrl = url.toString();
+        document.getElementById('finalUrl').textContent = finalUrl;
+        document.getElementById('resultContainer').style.display = 'block';
+    }
+
+    function copyToClipboard() {
+        const urlText = document.getElementById('finalUrl').textContent;
+        navigator.clipboard.writeText(urlText).then(() => {
+            alert("URL Copied!");
+        });
+    }
+</script>
