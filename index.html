@@ -91,34 +91,45 @@
                 <div class="tool-header">
                     <span style="color: var(--primary); font-weight:bold; letter-spacing: 1px; font-size:0.8rem;">FREE UTILITY</span>
                     <h2>UTM Campaign Builder</h2>
-                    <p>Standardize your tracking parameters instantly. No spreadsheets needed.</p>
+                    <p>Standardize your tracking parameters instantly. Matches Google's specifications.</p>
                 </div>
 
                 <form id="utmForm">
                     <div class="form-group full-width">
-                        <label>Website URL</label>
+                        <label>Website URL *</label>
                         <input type="url" id="baseUrl" placeholder="https://www.yourdomain.com" required>
                     </div>
 
                     <div class="form-grid">
                         <div class="form-group">
-                            <label>Campaign Source (utm_source)</label>
-                            <input type="text" id="utmSource" placeholder="e.g. google, newsletter, facebook">
+                            <label>Campaign ID (utm_id)</label>
+                            <input type="text" id="utmId" placeholder="e.g. abc.123">
                         </div>
                         <div class="form-group">
-                            <label>Campaign Medium (utm_medium)</label>
-                            <input type="text" id="utmMedium" placeholder="e.g. cpc, email, banner">
+                            <label>Campaign Name (utm_campaign) *</label>
+                            <input type="text" id="utmCampaign" placeholder="e.g. summer_sale" required>
                         </div>
                     </div>
 
                     <div class="form-grid">
                         <div class="form-group">
-                            <label>Campaign Name (utm_campaign)</label>
-                            <input type="text" id="utmCampaign" placeholder="e.g. summer_sale_2025">
+                            <label>Campaign Source (utm_source) *</label>
+                            <input type="text" id="utmSource" placeholder="e.g. google, newsletter" required>
                         </div>
                         <div class="form-group">
-                            <label>Campaign Content (Optional)</label>
-                            <input type="text" id="utmContent" placeholder="e.g. video_ad_A">
+                            <label>Campaign Medium (utm_medium) *</label>
+                            <input type="text" id="utmMedium" placeholder="e.g. cpc, email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Campaign Term (utm_term)</label>
+                            <input type="text" id="utmTerm" placeholder="Identify the paid keywords">
+                        </div>
+                        <div class="form-group">
+                            <label>Campaign Content (utm_content)</label>
+                            <input type="text" id="utmContent" placeholder="Use to differentiate ads">
                         </div>
                     </div>
                 </form>
@@ -146,10 +157,13 @@
         const display = document.getElementById('finalUrl');
 
         function generateURL() {
+            // Get all values
             const urlVal = document.getElementById('baseUrl').value.trim();
             const source = document.getElementById('utmSource').value.trim();
             const medium = document.getElementById('utmMedium').value.trim();
             const campaign = document.getElementById('utmCampaign').value.trim();
+            const id = document.getElementById('utmId').value.trim();
+            const term = document.getElementById('utmTerm').value.trim();
             const content = document.getElementById('utmContent').value.trim();
 
             if (!urlVal) {
@@ -167,9 +181,12 @@
 
                 const urlObj = new URL(finalBase);
                 
+                // Add parameters only if they exist
                 if (source) urlObj.searchParams.set('utm_source', source);
                 if (medium) urlObj.searchParams.set('utm_medium', medium);
                 if (campaign) urlObj.searchParams.set('utm_campaign', campaign);
+                if (id) urlObj.searchParams.set('utm_id', id);       // Added Logic
+                if (term) urlObj.searchParams.set('utm_term', term); // Added Logic
                 if (content) urlObj.searchParams.set('utm_content', content);
 
                 display.style.color = '#10B981'; // Success color
