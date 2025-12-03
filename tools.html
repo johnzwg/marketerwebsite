@@ -85,7 +85,7 @@
 
                 <div class="result-box">
                     <div id="finalUrl" class="generated-url">Fill in the fields to generate URL...</div>
-                    <button class="copy-btn" onclick="copyToClipboard()" title="Copy to Clipboard">
+                    <button class="copy-btn" onclick="copyToClipboard('finalUrl')" title="Copy to Clipboard">
                         <i class="fas fa-copy"></i>
                     </button>
                 </div>
@@ -95,39 +95,61 @@
 
     <section class="section-padding" style="padding-top: 0;">
         <div class="container">
-            <div class="tool-wrapper" style="border-color: #3B82F6;">
+            <div class="tool-wrapper" style="border-color: #8B5CF6;">
                 <div class="tool-header">
-                    <span style="color: var(--primary); font-weight:bold; letter-spacing: 1px; font-size:0.8rem;">STRATEGY</span>
-                    <h2>Break-Even ROAS Calculator</h2>
-                    <p>Calculate the minimum Return On Ad Spend needed to be profitable.</p>
+                    <span style="color: #8B5CF6; font-weight:bold; letter-spacing: 1px; font-size:0.8rem;">TECHNICAL</span>
+                    <h2>GTM Data Layer Generator</h2>
+                    <p>Generate valid JavaScript code for GA4 ecommerce events.</p>
                 </div>
 
                 <div class="form-grid">
                     <div class="form-group">
-                        <label>Product Price / AOV (€)</label>
-                        <input type="number" id="productPrice" placeholder="e.g. 50" step="0.01">
+                        <label>Event Name</label>
+                        <select id="eventName">
+                            <option value="purchase">Purchase</option>
+                            <option value="add_to_cart">Add to Cart</option>
+                            <option value="begin_checkout">Begin Checkout</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label>Product Cost / COGS (€)</label>
-                        <input type="number" id="productCost" placeholder="e.g. 20" step="0.01">
+                        <label>Currency</label>
+                        <input type="text" id="currency" value="EUR">
                     </div>
                 </div>
 
-                <div class="stack-grid" style="margin-top: 20px;">
-                    <div class="card" style="padding: 20px; text-align: center; border-color: var(--border);">
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Profit Margin</p>
-                        <h3 id="marginResult" style="color: var(--primary); font-size: 1.5rem; margin: 5px 0;">0%</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Transaction ID / Order ID</label>
+                        <input type="text" id="transactionId" placeholder="e.g. T_12345">
                     </div>
-                    
-                    <div class="card" style="padding: 20px; text-align: center; border-color: var(--border);">
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Break-Even ROAS</p>
-                        <h3 id="roasResult" style="color: #F59E0B; font-size: 1.5rem; margin: 5px 0;">0.00</h3>
+                    <div class="form-group">
+                        <label>Total Value</label>
+                        <input type="number" id="totalValue" placeholder="e.g. 59.90">
                     </div>
+                </div>
 
-                    <div class="card" style="padding: 20px; text-align: center; border-color: var(--border);">
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Max CPA (Break-Even)</p>
-                        <h3 id="cpaResult" style="color: var(--success); font-size: 1.5rem; margin: 5px 0;">€0.00</h3>
+                <hr style="border: 0; border-top: 1px solid var(--border); margin: 20px 0;">
+                <p style="color: #fff; font-size: 0.9rem; margin-bottom: 10px;">Item Details (Single Item Example)</p>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Item ID / SKU</label>
+                        <input type="text" id="itemId" placeholder="e.g. SKU_999">
                     </div>
+                    <div class="form-group">
+                        <label>Item Name</label>
+                        <input type="text" id="itemName" placeholder="e.g. Blue T-Shirt">
+                    </div>
+                </div>
+
+                <div class="result-box" style="background: #1e1e1e; border-color: #333;">
+                    <div style="margin-bottom: 10px; font-size: 0.8rem; color: #8B5CF6; font-family: monospace;">// Copy and paste this into console or scripts</div>
+                    <pre id="codeOutput" style="color: #A5B4FC; font-family: 'Consolas', monospace; white-space: pre-wrap; word-break: break-all;">
+// Code will appear here...
+                    </pre>
+                    <button class="copy-btn" onclick="copyToClipboard('codeOutput')" title="Copy Code">
+                        <i class="fas fa-code"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -182,48 +204,57 @@
 
         utmInputs.forEach(input => input.addEventListener('input', generateURL));
 
-        function copyToClipboard() {
-            const textToCopy = display.textContent;
-            if (textToCopy.startsWith('http')) {
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    alert("URL Copied!");
-                });
-            }
-        }
+        // --- GTM DATA LAYER GENERATOR LOGIC ---
+        const gtmInputs = document.querySelectorAll('#eventName, #currency, #transactionId, #totalValue, #itemId, #itemName');
+        const codeDisplay = document.getElementById('codeOutput');
 
-        // --- ROAS CALCULATOR LOGIC ---
-        const priceInput = document.getElementById('productPrice');
-        const costInput = document.getElementById('productCost');
-        const marginDisplay = document.getElementById('marginResult');
-        const roasDisplay = document.getElementById('roasResult');
-        const cpaDisplay = document.getElementById('cpaResult');
+        function generateDataLayer() {
+            const eventName = document.getElementById('eventName').value;
+            const currency = document.getElementById('currency').value || 'EUR';
+            const transId = document.getElementById('transactionId').value || 'T_12345';
+            const value = document.getElementById('totalValue').value || 0;
+            const itemId = document.getElementById('itemId').value || 'SKU_123';
+            const itemName = document.getElementById('itemName').value || 'Product Name';
 
-        function calculateROAS() {
-            const price = parseFloat(priceInput.value) || 0;
-            const cost = parseFloat(costInput.value) || 0;
-
-            if (price > 0) {
-                const profit = price - cost;
-                const margin = (profit / price) * 100;
-                let breakEvenROAS = 0;
-                if (margin > 0) {
-                    breakEvenROAS = 1 / (margin / 100);
+            // Construct the Object
+            const dlObject = {
+                event: eventName,
+                ecommerce: {
+                    currency: currency,
+                    value: parseFloat(value),
+                    transaction_id: transId,
+                    items: [
+                        {
+                            item_id: itemId,
+                            item_name: itemName,
+                            price: parseFloat(value) // Simplified for single item example
+                        }
+                    ]
                 }
-                const maxCPA = profit;
+            };
 
-                marginDisplay.textContent = margin.toFixed(1) + '%';
-                roasDisplay.textContent = breakEvenROAS.toFixed(2) + 'x';
-                cpaDisplay.textContent = '€' + maxCPA.toFixed(2);
-                marginDisplay.style.color = margin < 0 ? '#EF4444' : '#3B82F6';
-            } else {
-                marginDisplay.textContent = '0%';
-                roasDisplay.textContent = '0.00';
-                cpaDisplay.textContent = '€0.00';
+            // Remove transaction_id if not purchase
+            if(eventName !== 'purchase') {
+                delete dlObject.ecommerce.transaction_id;
             }
+
+            // Convert to formatted string
+            const jsonString = JSON.stringify(dlObject, null, 4);
+            codeDisplay.textContent = `window.dataLayer.push(${jsonString});`;
         }
 
-        priceInput.addEventListener('input', calculateROAS);
-        costInput.addEventListener('input', calculateROAS);
+        gtmInputs.forEach(input => input.addEventListener('input', generateDataLayer));
+        // Run once on load
+        window.addEventListener('load', generateDataLayer);
+
+
+        // --- GENERIC COPY FUNCTION ---
+        function copyToClipboard(elementId) {
+            const textToCopy = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert("Copied to clipboard!");
+            });
+        }
     </script>
 </body>
 </html>
