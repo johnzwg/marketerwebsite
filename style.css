@@ -23,7 +23,7 @@ body {
     color: var(--text-main);
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 a {
@@ -52,7 +52,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(5, 5, 7, 0.8);
+    background: rgba(5, 5, 7, 0.9); /* Slightly darker for better contrast */
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     z-index: 1000;
@@ -63,6 +63,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     height: 70px;
+    transition: all 0.3s ease;
 }
 
 .logo {
@@ -71,6 +72,11 @@ nav {
     background: var(--primary-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
 }
 
 .nav-links a {
@@ -103,12 +109,6 @@ nav {
     letter-spacing: -0.02em;
 }
 
-.hero h1 span {
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
 .hero p {
     font-size: 1.25rem;
     color: var(--text-muted);
@@ -137,7 +137,8 @@ nav {
     box-shadow: 0 15px 30px -5px rgba(59, 130, 246, 0.5);
 }
 
-/* --- TECH STACK (GRID) --- */
+/* --- TECH STACK & GRIDS --- */
+/* Auto-fit magic makes this responsive automatically */
 .stack-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -194,7 +195,7 @@ nav {
     margin-right: 12px;
 }
 
-/* --- UTM TOOL SECTION --- */
+/* --- TOOLS & FORMS --- */
 .tool-wrapper {
     background: #0B0E14;
     border: 1px solid var(--border);
@@ -202,20 +203,7 @@ nav {
     padding: 40px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     margin-top: 20px;
-}
-
-.tool-header {
-    margin-bottom: 30px;
     text-align: left;
-}
-
-.tool-header h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-.tool-header p {
-    color: var(--text-muted);
 }
 
 .form-grid {
@@ -261,14 +249,14 @@ nav {
     padding: 24px;
     margin-top: 30px;
     position: relative;
+    word-break: break-all; /* Ensures long URLs don't break layout */
 }
 
 .generated-url {
     color: var(--success);
     font-family: 'Monaco', 'Consolas', monospace;
-    word-break: break-all;
-    margin-right: 40px;
     font-size: 1rem;
+    padding-right: 40px;
 }
 
 .copy-btn {
@@ -296,19 +284,57 @@ footer {
     border-top: 1px solid var(--border);
     color: var(--text-muted);
     font-size: 0.9rem;
+    margin-top: 60px;
 }
 
-/* --- RESPONSIVE ADJUSTMENTS --- */
+/* --- MOBILE RESPONSIVENESS (The Important Part) --- */
 @media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    
-    .form-grid {
-        grid-template-columns: 1fr;
+    /* 1. Header Adjustments */
+    nav {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 0;
     }
     
     .nav-links {
-        display: none; /* Απλή απόκρυψη σε mobile για τώρα */
+        flex-wrap: wrap; /* Allow links to wrap if needed */
+        justify-content: center;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .nav-links a {
+        margin-left: 0;
+        margin: 0 8px; /* Spacing between links on mobile */
+        font-size: 0.9rem;
+    }
+
+    /* 2. Hero Adjustments */
+    .hero {
+        padding-top: 160px; /* Push down to avoid overlap with taller nav */
+    }
+
+    .hero h1 {
+        font-size: 2.5rem; /* Smaller font for mobile */
+    }
+    
+    .hero p {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    /* 3. Form Adjustments */
+    .form-grid {
+        grid-template-columns: 1fr; /* Stack inputs vertically */
+        gap: 15px;
+    }
+
+    .tool-wrapper {
+        padding: 25px; /* Less padding on mobile cards */
+    }
+    
+    /* 4. Hide divider in nav on mobile */
+    .nav-links div[style*="border-left"] {
+        display: none;
     }
 }
