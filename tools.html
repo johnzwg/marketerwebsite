@@ -12,14 +12,22 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-        .social-nav-icon {
-            color: #94A3B8; font-size: 1.2rem; margin-left: 20px; transition: color 0.3s ease;
-        }
+        .social-nav-icon { color: #94A3B8; font-size: 1.2rem; margin-left: 20px; transition: color 0.3s ease; }
         .social-nav-icon:hover { color: #3B82F6; }
+        
+        /* Comment Styles */
+        .comments-section { max-width: 800px; margin: 60px auto 0; padding: 30px; background: #0F1218; border: 1px solid #1E293B; border-radius: 12px; }
+        .comment-form input, .comment-form textarea {
+            width: 100%; padding: 12px; margin-bottom: 15px;
+            background: #151921; border: 1px solid #334155; border-radius: 6px; color: white;
+        }
+        .comment-list { margin-top: 30px; }
+        .single-comment { border-bottom: 1px solid #1E293B; padding: 15px 0; }
+        .comment-header { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem; color: #60a5fa; }
+        .comment-body { color: #cbd5e1; }
     </style>
 </head>
 <body>
@@ -35,9 +43,9 @@
                     <a href="index.html#stack">Tech Stack</a>
                     <a href="tools.html" class="active" style="color: var(--primary);">Tools</a>
                     <a href="resources.html">Reading</a>
+                    <a href="aitools.html">AI Kit</a>
                     
                     <div style="border-left: 1px solid #334155; height: 24px; margin-left: 25px; margin-right: 5px;"></div>
-                    
                     <a href="https://www.linkedin.com/in/giannis-zografakis-2965a0244/" target="_blank" class="social-nav-icon"><i class="fab fa-linkedin"></i></a>
                     <a href="https://www.instagram.com/gianniszwg/?hl=el" target="_blank" class="social-nav-icon"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -111,43 +119,39 @@
                     <h2>A/B Test Significance Calc</h2>
                     <p>Check if your campaign results are statistically significant.</p>
                 </div>
-
                 <div class="form-grid">
                     <div style="background: #151921; padding: 20px; border-radius: 8px; border: 1px solid #334155;">
                         <h3 style="color: #94A3B8; font-size: 1rem; margin-bottom: 15px;">Version A (Control)</h3>
-                        <div class="form-group" style="margin-bottom: 15px;">
-                            <label>Visitors</label>
-                            <input type="number" id="visitorsA" placeholder="e.g. 1000">
-                        </div>
-                        <div class="form-group">
-                            <label>Conversions</label>
-                            <input type="number" id="conversionsA" placeholder="e.g. 50">
-                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;"><label>Visitors</label><input type="number" id="visitorsA" placeholder="e.g. 1000"></div>
+                        <div class="form-group"><label>Conversions</label><input type="number" id="conversionsA" placeholder="e.g. 50"></div>
                     </div>
-
                     <div style="background: #151921; padding: 20px; border-radius: 8px; border: 1px solid #334155;">
                         <h3 style="color: #94A3B8; font-size: 1rem; margin-bottom: 15px;">Version B (Variation)</h3>
-                        <div class="form-group" style="margin-bottom: 15px;">
-                            <label>Visitors</label>
-                            <input type="number" id="visitorsB" placeholder="e.g. 1000">
-                        </div>
-                        <div class="form-group">
-                            <label>Conversions</label>
-                            <input type="number" id="conversionsB" placeholder="e.g. 65">
-                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;"><label>Visitors</label><input type="number" id="visitorsB" placeholder="e.g. 1000"></div>
+                        <div class="form-group"><label>Conversions</label><input type="number" id="conversionsB" placeholder="e.g. 65"></div>
                     </div>
                 </div>
-
                 <button class="btn btn-primary" onclick="calculateSignificance()" style="width: 100%; margin-top: 20px; background: #10B981;">Calculate & Visualize</button>
-
                 <div class="result-box" id="abResultBox" style="display:none; text-align: center; border-color: #10B981;">
                     <h3 id="abResultTitle" style="color: #fff; margin-bottom: 10px;"></h3>
                     <p id="abResultDesc" style="color: #94A3B8; margin-bottom: 20px;"></p>
-                    
-                    <div style="max-width: 500px; margin: 0 auto;">
-                        <canvas id="abChart"></canvas>
-                    </div>
+                    <div style="max-width: 500px; margin: 0 auto;"><canvas id="abChart"></canvas></div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="padding-top: 0;">
+        <div class="container">
+            <div class="comments-section">
+                <h3 style="color: white; margin-bottom: 20px;">Discussion</h3>
+                <p style="color: #94A3B8; margin-bottom: 20px; font-size: 0.9rem;">Questions about these tools? Ask below.</p>
+                <form id="commentForm" class="comment-form">
+                    <input type="text" id="commentName" placeholder="Your Name" required>
+                    <textarea id="commentBody" rows="3" placeholder="Write your comment..." required></textarea>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Post Comment</button>
+                </form>
+                <div id="commentsContainer" class="comment-list"></div>
             </div>
         </div>
     </section>
@@ -162,7 +166,7 @@
     </footer>
 
     <script>
-        // --- 1. UTM LOGIC ---
+        // --- EXISTING LOGIC (UTM, GTM, AB) ---
         const utmInputs = document.querySelectorAll('#utmForm input');
         const display = document.getElementById('finalUrl');
         function generateURL() {
@@ -188,7 +192,6 @@
         }
         utmInputs.forEach(input => input.addEventListener('input', generateURL));
 
-        // --- 2. GTM LOGIC ---
         const gtmInputs = document.querySelectorAll('#eventName, #currency, #transactionId, #totalValue, #itemId, #itemName');
         const codeDisplay = document.getElementById('codeOutput');
         function generateDataLayer() {
@@ -209,39 +212,26 @@
         gtmInputs.forEach(input => input.addEventListener('input', generateDataLayer));
         window.addEventListener('load', generateDataLayer);
 
-        // --- 3. A/B TEST LOGIC WITH CHART ---
-        let myChart = null; // Global variable for the chart instance
-
+        let myChart = null;
         function calculateSignificance() {
             const visA = parseFloat(document.getElementById('visitorsA').value);
             const convA = parseFloat(document.getElementById('conversionsA').value);
             const visB = parseFloat(document.getElementById('visitorsB').value);
             const convB = parseFloat(document.getElementById('conversionsB').value);
-
             if(!visA || !convA || !visB || !convB) { alert("Please fill in all fields"); return; }
-
-            const rateA = (convA / visA) * 100; // Percentage
-            const rateB = (convB / visB) * 100; // Percentage
-            
-            // Stats Calculation
+            const rateA = (convA / visA) * 100;
+            const rateB = (convB / visB) * 100;
             const p1 = convA / visA;
             const p2 = convB / visB;
             const se = Math.sqrt(((p1 * (1 - p1)) / visA) + ((p2 * (1 - p2)) / visB));
             const zScore = (p2 - p1) / se;
-            
             let confidence = 0;
             const z = Math.abs(zScore);
-            if(z >= 2.58) confidence = 99;
-            else if(z >= 1.96) confidence = 95;
-            else if(z >= 1.65) confidence = 90;
-            else confidence = Math.round((1 - (1/(1+z)))*100);
-
-            // Display Texts
+            if(z >= 2.58) confidence = 99; else if(z >= 1.96) confidence = 95; else if(z >= 1.65) confidence = 90; else confidence = Math.round((1 - (1/(1+z)))*100);
             const resultBox = document.getElementById('abResultBox');
             const resultTitle = document.getElementById('abResultTitle');
             const resultDesc = document.getElementById('abResultDesc');
             resultBox.style.display = 'block';
-
             if (confidence >= 90) {
                 const winner = rateB > rateA ? "Variation B" : "Version A";
                 const lift = ((rateB - rateA) / rateA * 100).toFixed(2);
@@ -253,15 +243,8 @@
                 resultTitle.style.color = "#F59E0B";
                 resultDesc.innerHTML = `Not enough difference yet.<br> CR A: ${rateA.toFixed(2)}% vs CR B: ${rateB.toFixed(2)}%`;
             }
-
-            // --- CHART.JS VISUALIZATION ---
             const ctx = document.getElementById('abChart').getContext('2d');
-            
-            // Destroy previous chart if exists to avoid duplication
-            if (myChart) {
-                myChart.destroy();
-            }
-
+            if (myChart) { myChart.destroy(); }
             myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -269,45 +252,48 @@
                     datasets: [{
                         label: 'Conversion Rate (%)',
                         data: [rateA.toFixed(2), rateB.toFixed(2)],
-                        backgroundColor: [
-                            'rgba(148, 163, 184, 0.5)', // Gray for A
-                            rateB > rateA ? 'rgba(16, 185, 129, 0.7)' : 'rgba(239, 68, 68, 0.7)' // Green or Red for B
-                        ],
-                        borderColor: [
-                            'rgba(148, 163, 184, 1)',
-                            rateB > rateA ? 'rgba(16, 185, 129, 1)' : 'rgba(239, 68, 68, 1)'
-                        ],
+                        backgroundColor: ['rgba(148, 163, 184, 0.5)', rateB > rateA ? 'rgba(16, 185, 129, 0.7)' : 'rgba(239, 68, 68, 0.7)'],
+                        borderColor: ['rgba(148, 163, 184, 1)', rateB > rateA ? 'rgba(16, 185, 129, 1)' : 'rgba(239, 68, 68, 1)'],
                         borderWidth: 1
                     }]
                 },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Conversion Rate %',
-                                color: '#94A3B8'
-                            },
-                            ticks: { color: '#94A3B8' },
-                            grid: { color: '#334155' }
-                        },
-                        x: {
-                            ticks: { color: '#FFFFFF' },
-                            grid: { display: false }
-                        }
-                    },
-                    plugins: {
-                        legend: { display: false }
-                    }
-                }
+                options: { responsive: true, scales: { y: { beginAtZero: true, grid: { color: '#334155' } }, x: { grid: { display: false } } }, plugins: { legend: { display: false } } }
             });
         }
 
         function copyToClipboard(elementId) {
             const textToCopy = document.getElementById(elementId).textContent;
             navigator.clipboard.writeText(textToCopy).then(() => { alert("Copied!"); });
+        }
+
+        // --- NEW: COMMENT SYSTEM LOGIC (TOOLS PAGE) ---
+        const commentForm = document.getElementById('commentForm');
+        const commentsContainer = document.getElementById('commentsContainer');
+        const PAGE_ID = 'marketing_tools_comments'; // Unique ID for THIS page
+
+        window.addEventListener('load', () => {
+            const storedComments = JSON.parse(localStorage.getItem(PAGE_ID)) || [];
+            storedComments.forEach(comment => addCommentToDOM(comment));
+        });
+
+        commentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('commentName').value;
+            const body = document.getElementById('commentBody').value;
+            const date = new Date().toLocaleDateString();
+            const commentObj = { name, body, date };
+            const storedComments = JSON.parse(localStorage.getItem(PAGE_ID)) || [];
+            storedComments.unshift(commentObj);
+            localStorage.setItem(PAGE_ID, JSON.stringify(storedComments));
+            addCommentToDOM(commentObj);
+            commentForm.reset();
+        });
+
+        function addCommentToDOM(comment) {
+            const div = document.createElement('div');
+            div.className = 'single-comment';
+            div.innerHTML = `<div class="comment-header"><strong>${comment.name}</strong><span>${comment.date}</span></div><div class="comment-body">${comment.body}</div>`;
+            commentsContainer.insertBefore(div, commentsContainer.firstChild);
         }
     </script>
 </body>
