@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
         .social-nav-icon {
             color: #94A3B8; font-size: 1.2rem; margin-left: 20px; transition: color 0.3s ease;
@@ -136,11 +138,15 @@
                     </div>
                 </div>
 
-                <button class="btn btn-primary" onclick="calculateSignificance()" style="width: 100%; margin-top: 20px; background: #10B981;">Calculate Significance</button>
+                <button class="btn btn-primary" onclick="calculateSignificance()" style="width: 100%; margin-top: 20px; background: #10B981;">Calculate & Visualize</button>
 
                 <div class="result-box" id="abResultBox" style="display:none; text-align: center; border-color: #10B981;">
                     <h3 id="abResultTitle" style="color: #fff; margin-bottom: 10px;"></h3>
-                    <p id="abResultDesc" style="color: #94A3B8;"></p>
+                    <p id="abResultDesc" style="color: #94A3B8; margin-bottom: 20px;"></p>
+                    
+                    <div style="max-width: 500px; margin: 0 auto;">
+                        <canvas id="abChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -203,7 +209,9 @@
         gtmInputs.forEach(input => input.addEventListener('input', generateDataLayer));
         window.addEventListener('load', generateDataLayer);
 
-        // --- 3. A/B TEST LOGIC ---
+        // --- 3. A/B TEST LOGIC WITH CHART ---
+        let myChart = null; // Global variable for the chart instance
+
         function calculateSignificance() {
             const visA = parseFloat(document.getElementById('visitorsA').value);
             const convA = parseFloat(document.getElementById('conversionsA').value);
@@ -212,23 +220,26 @@
 
             if(!visA || !convA || !visB || !convB) { alert("Please fill in all fields"); return; }
 
-            const rateA = convA / visA;
-            const rateB = convB / visB;
-            const se = Math.sqrt(((rateA * (1 - rateA)) / visA) + ((rateB * (1 - rateB)) / visB));
-            const zScore = (rateB - rateA) / se;
+            const rateA = (convA / visA) * 100; // Percentage
+            const rateB = (convB / visB) * 100; // Percentage
             
-            // Simplified confidence approximation
+            // Stats Calculation
+            const p1 = convA / visA;
+            const p2 = convB / visB;
+            const se = Math.sqrt(((p1 * (1 - p1)) / visA) + ((p2 * (1 - p2)) / visB));
+            const zScore = (p2 - p1) / se;
+            
             let confidence = 0;
             const z = Math.abs(zScore);
             if(z >= 2.58) confidence = 99;
             else if(z >= 1.96) confidence = 95;
             else if(z >= 1.65) confidence = 90;
-            else confidence = Math.round((1 - (1/(1+z)))*100); // Rough estimate for lower values
+            else confidence = Math.round((1 - (1/(1+z)))*100);
 
+            // Display Texts
             const resultBox = document.getElementById('abResultBox');
             const resultTitle = document.getElementById('abResultTitle');
             const resultDesc = document.getElementById('abResultDesc');
-            
             resultBox.style.display = 'block';
 
             if (confidence >= 90) {
@@ -236,12 +247,62 @@
                 const lift = ((rateB - rateA) / rateA * 100).toFixed(2);
                 resultTitle.textContent = `Significant Result! (${confidence}% Confidence)`;
                 resultTitle.style.color = "#10B981";
-                resultDesc.innerHTML = `The winner is <strong>${winner}</strong> with a ${lift}% lift in conversion rate.`;
+                resultDesc.innerHTML = `Winner: <strong>${winner}</strong> with a ${lift}% lift.<br> CR A: ${rateA.toFixed(2)}% vs CR B: ${rateB.toFixed(2)}%`;
             } else {
                 resultTitle.textContent = "Test is Inconclusive";
                 resultTitle.style.color = "#F59E0B";
-                resultDesc.textContent = "There is not enough data yet to declare a winner with high confidence (Need at least 90%). Keep running the test.";
+                resultDesc.innerHTML = `Not enough difference yet.<br> CR A: ${rateA.toFixed(2)}% vs CR B: ${rateB.toFixed(2)}%`;
             }
+
+            // --- CHART.JS VISUALIZATION ---
+            const ctx = document.getElementById('abChart').getContext('2d');
+            
+            // Destroy previous chart if exists to avoid duplication
+            if (myChart) {
+                myChart.destroy();
+            }
+
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Version A', 'Version B'],
+                    datasets: [{
+                        label: 'Conversion Rate (%)',
+                        data: [rateA.toFixed(2), rateB.toFixed(2)],
+                        backgroundColor: [
+                            'rgba(148, 163, 184, 0.5)', // Gray for A
+                            rateB > rateA ? 'rgba(16, 185, 129, 0.7)' : 'rgba(239, 68, 68, 0.7)' // Green or Red for B
+                        ],
+                        borderColor: [
+                            'rgba(148, 163, 184, 1)',
+                            rateB > rateA ? 'rgba(16, 185, 129, 1)' : 'rgba(239, 68, 68, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Conversion Rate %',
+                                color: '#94A3B8'
+                            },
+                            ticks: { color: '#94A3B8' },
+                            grid: { color: '#334155' }
+                        },
+                        x: {
+                            ticks: { color: '#FFFFFF' },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
         }
 
         function copyToClipboard(elementId) {
