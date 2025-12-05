@@ -14,15 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
-        /* Social Icons Style for Header */
         .social-nav-icon {
-            color: #94A3B8; /* Muted color */
+            color: #94A3B8;
             font-size: 1.2rem;
             margin-left: 20px;
             transition: color 0.3s ease;
         }
         .social-nav-icon:hover {
-            color: #3B82F6; /* Primary Blue on hover */
+            color: #3B82F6;
         }
     </style>
 </head>
@@ -37,8 +36,7 @@
                     <a href="index.html" class="active">About</a>
                     <a href="index.html#stack">Tech Stack</a>
                     <a href="tools.html">Tools</a>
-                    
-                    <div style="border-left: 1px solid #334155; height: 24px; margin-left: 25px; margin-right: 5px;"></div>
+                    <a href="resources.html">Reading</a> <div style="border-left: 1px solid #334155; height: 24px; margin-left: 25px; margin-right: 5px;"></div>
                     
                     <a href="https://www.linkedin.com/in/giannis-zografakis-2965a0244/" target="_blank" class="social-nav-icon" title="LinkedIn">
                         <i class="fab fa-linkedin"></i>
@@ -53,53 +51,58 @@
 
     <section class="hero">
         <div class="container">
-            <h1>The Bridge Between<br><span>Marketing & Code.</span></h1>
+            <span style="color: #60a5fa; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 15px;">Data-Driven Growth Strategies</span>
+            <h1>Bridging the gap between<br><span style="color: #60a5fa;">Marketing</span> & <span style="color: #60a5fa;">Code</span>.</h1>
             <p>
-                I don't just run ads. I build the infrastructure that tracks them.
-                Specialized in Python automation, Server-Side Tracking, and Technical SEO.
+                I don't just run ads. I build the tracking infrastructure that makes them profitable.
+                Specialized in Technical SEO, Advanced GTM Implementations, and GA4 Audits.
             </p>
-            <a href="tools.html" class="btn btn-primary">Try My Tools <i class="fas fa-arrow-right" style="margin-left:8px;"></i></a>
+            <a href="tools.html" class="btn btn-primary">View My Projects</a>
         </div>
     </section>
 
     <section class="section-padding" id="stack">
         <div class="container">
-            <h2 style="font-size: 2rem; margin-bottom: 20px;">My Technical Arsenal</h2>
+            <div style="border-left: 4px solid #60a5fa; padding-left: 15px; margin-bottom: 40px;">
+                <h2 style="font-size: 2rem; margin: 0;">My Tech Stack</h2>
+            </div>
             <div class="stack-grid">
-                
                 <div class="card">
-                    <div class="card-icon"><i class="fas fa-code"></i></div>
-                    <h3>Development</h3>
-                    <ul class="skill-list">
-                        <li>Python (Automation & Analysis)</li>
-                        <li>SQL (BigQuery)</li>
-                        <li>HTML5 / CSS3 / JS</li>
-                        <li>Git & GitHub</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-bullseye"></i></div>
+                    <div class="card-icon" style="background: rgba(16, 185, 129, 0.1); color: #34d399;">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
                     <h3>Analytics & Tracking</h3>
                     <ul class="skill-list">
                         <li>Google Analytics 4 (Advanced)</li>
-                        <li>GTM (Server-Side)</li>
-                        <li>Looker Studio / Power BI</li>
-                        <li>Attribution Modeling</li>
+                        <li>Google Tag Manager (Custom JS)</li>
+                        <li>Server-Side Tracking</li>
+                        <li>Looker Studio</li>
                     </ul>
                 </div>
-
                 <div class="card">
-                    <div class="card-icon"><i class="fas fa-rocket"></i></div>
-                    <h3>Performance Marketing</h3>
+                    <div class="card-icon" style="background: rgba(244, 114, 182, 0.1); color: #f472b6;">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Marketing</h3>
                     <ul class="skill-list">
-                        <li>Paid Search (Google/Microsoft)</li>
-                        <li>Paid Social (Meta/TikTok/Snap)</li>
-                        <li>Technical SEO</li>
-                        <li>Conversion Rate Optimization</li>
+                        <li>Google Ads (Search, Shopping, PMax)</li>
+                        <li>Meta Ads (Facebook/Instagram)</li>
+                        <li>Technical SEO (Screaming Frog)</li>
+                        <li>Conversion Rate Optimization (CRO)</li>
                     </ul>
                 </div>
-
+                <div class="card">
+                    <div class="card-icon" style="background: rgba(96, 165, 250, 0.1); color: #60a5fa;">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Development</h3>
+                    <ul class="skill-list">
+                        <li>HTML5 & CSS3</li>
+                        <li>JavaScript (Data Layer manipulation)</li>
+                        <li>SQL (Basic)</li>
+                        <li>Git & GitHub</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -108,35 +111,31 @@
         <div class="container">
             <h2 style="font-size: 2rem; margin-bottom: 10px;">Built by Me</h2>
             <p style="color: var(--text-muted); margin-bottom: 30px;">Custom tools designed to automate marketing workflows.</p>
-            
             <div class="stack-grid">
-                
                 <div class="card" style="border-left: 4px solid var(--primary);">
                     <div class="card-icon" style="background: rgba(59, 130, 246, 0.1); color: var(--primary);">
                         <i class="fas fa-link"></i>
                     </div>
                     <h3>UTM Campaign Builder</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
-                        A standard-compliant URL builder for accurate GA4 tracking. Auto-validates parameters.
+                        A standard-compliant URL builder for accurate GA4 tracking.
                     </p>
                     <a href="tools.html" class="btn" style="border: 1px solid var(--border); color: white; padding: 10px 20px; font-size: 0.9rem;">
                         Open Tool <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 5px;"></i>
                     </a>
                 </div>
-
                 <div class="card" style="border-left: 4px solid #8B5CF6;">
                     <div class="card-icon" style="background: rgba(139, 92, 246, 0.1); color: #8B5CF6;">
                         <i class="fas fa-layer-group"></i>
                     </div>
                     <h3>GTM Data Layer Gen</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
-                        Generate clean JSON code for GA4 Ecommerce events (Purchase, AddToCart) instantly.
+                        Generate clean JSON code for GA4 Ecommerce events instantly.
                     </p>
                     <a href="tools.html" class="btn" style="border: 1px solid var(--border); color: white; padding: 10px 20px; font-size: 0.9rem;">
                         Open Tool <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 5px;"></i>
                     </a>
                 </div>
-
             </div>
         </div>
     </section>
