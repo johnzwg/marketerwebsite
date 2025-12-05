@@ -18,12 +18,8 @@
         .social-nav-icon { color: #94A3B8; font-size: 1.2rem; margin-left: 20px; transition: color 0.3s ease; }
         .social-nav-icon:hover { color: #3B82F6; }
         
-        /* Comment Styles */
         .comments-section { max-width: 800px; margin: 60px auto 0; padding: 30px; background: #0F1218; border: 1px solid #1E293B; border-radius: 12px; }
-        .comment-form input, .comment-form textarea {
-            width: 100%; padding: 12px; margin-bottom: 15px;
-            background: #151921; border: 1px solid #334155; border-radius: 6px; color: white;
-        }
+        .comment-form input, .comment-form textarea { width: 100%; padding: 12px; margin-bottom: 15px; background: #151921; border: 1px solid #334155; border-radius: 6px; color: white; }
         .comment-list { margin-top: 30px; }
         .single-comment { border-bottom: 1px solid #1E293B; padding: 15px 0; }
         .comment-header { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem; color: #60a5fa; }
@@ -45,6 +41,8 @@
                     <a href="resources.html">Reading</a>
                     <a href="aitools.html">AI Kit</a>
                     
+                    <a href="contact.html" style="margin-left: 20px; border: 1px solid #334155; padding: 8px 16px; border-radius: 6px; font-size: 0.9rem;">Contact</a>
+
                     <div style="border-left: 1px solid #334155; height: 24px; margin-left: 25px; margin-right: 5px;"></div>
                     <a href="https://www.linkedin.com/in/giannis-zografakis-2965a0244/" target="_blank" class="social-nav-icon"><i class="fab fa-linkedin"></i></a>
                     <a href="https://www.instagram.com/gianniszwg/?hl=el" target="_blank" class="social-nav-icon"><i class="fab fa-instagram"></i></a>
@@ -166,7 +164,7 @@
     </footer>
 
     <script>
-        // --- EXISTING LOGIC (UTM, GTM, AB) ---
+        // UTM
         const utmInputs = document.querySelectorAll('#utmForm input');
         const display = document.getElementById('finalUrl');
         function generateURL() {
@@ -192,6 +190,7 @@
         }
         utmInputs.forEach(input => input.addEventListener('input', generateURL));
 
+        // GTM
         const gtmInputs = document.querySelectorAll('#eventName, #currency, #transactionId, #totalValue, #itemId, #itemName');
         const codeDisplay = document.getElementById('codeOutput');
         function generateDataLayer() {
@@ -212,6 +211,7 @@
         gtmInputs.forEach(input => input.addEventListener('input', generateDataLayer));
         window.addEventListener('load', generateDataLayer);
 
+        // AB TEST
         let myChart = null;
         function calculateSignificance() {
             const visA = parseFloat(document.getElementById('visitorsA').value);
@@ -266,10 +266,10 @@
             navigator.clipboard.writeText(textToCopy).then(() => { alert("Copied!"); });
         }
 
-        // --- NEW: COMMENT SYSTEM LOGIC (TOOLS PAGE) ---
+        // COMMENTS
         const commentForm = document.getElementById('commentForm');
         const commentsContainer = document.getElementById('commentsContainer');
-        const PAGE_ID = 'marketing_tools_comments'; // Unique ID for THIS page
+        const PAGE_ID = 'marketing_tools_comments';
 
         window.addEventListener('load', () => {
             const storedComments = JSON.parse(localStorage.getItem(PAGE_ID)) || [];
