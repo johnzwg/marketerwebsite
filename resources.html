@@ -14,18 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
-        /* Social Icons Style for Header */
         .social-nav-icon {
             color: #94A3B8;
             font-size: 1.2rem;
             margin-left: 20px;
             transition: color 0.3s ease;
         }
-        .social-nav-icon:hover {
-            color: #3B82F6;
-        }
+        .social-nav-icon:hover { color: #3B82F6; }
         
-        /* Resource Card Specifics */
         .resource-card {
             display: flex;
             flex-direction: column;
@@ -35,18 +31,17 @@
         .resource-link {
             color: #60a5fa;
             font-weight: 600;
-            margin-top: auto; /* Pushes link to bottom */
+            margin-top: auto;
             display: inline-flex;
             align-items: center;
         }
-        .resource-link:hover {
-            text-decoration: underline;
-        }
+        .resource-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDJVZZZ6"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
     <header>
         <div class="container">
             <nav>
@@ -55,14 +50,12 @@
                     <a href="index.html">About</a>
                     <a href="index.html#stack">Tech Stack</a>
                     <a href="tools.html">Tools</a>
-                    <a href="resources.html" class="active" style="color: var(--primary);">Reading</a> <div style="border-left: 1px solid #334155; height: 24px; margin-left: 25px; margin-right: 5px;"></div>
+                    <a href="resources.html" class="active" style="color: var(--primary);">Reading</a>
                     
-                    <a href="https://www.linkedin.com/in/giannis-zografakis-2965a0244/" target="_blank" class="social-nav-icon" title="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://www.instagram.com/gianniszwg/?hl=el" target="_blank" class="social-nav-icon" title="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+                    <div style="border-left: 1px solid #334155; height: 24px; margin-left: 25px; margin-right: 5px;"></div>
+                    
+                    <a href="https://www.linkedin.com/in/giannis-zografakis-2965a0244/" target="_blank" class="social-nav-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/gianniszwg/?hl=el" target="_blank" class="social-nav-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </nav>
         </div>
@@ -76,97 +69,54 @@
     <section class="section-padding" style="padding-top: 20px;">
         <div class="container">
             <div class="stack-grid">
-                
                 <div class="card resource-card">
                     <div>
-                        <div class="card-icon" style="background: rgba(96, 165, 250, 0.1); color: #60a5fa;">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
+                        <div class="card-icon" style="background: rgba(96, 165, 250, 0.1); color: #60a5fa;"><i class="fas fa-chart-line"></i></div>
                         <h3>Adalysis Blog</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
-                            Advanced PPC strategies, testing methodologies, and automation tips. Essential for deep-diving into Google Ads performance.
-                        </p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Advanced PPC strategies, testing methodologies, and automation tips.</p>
                     </div>
-                    <a href="https://adalysis.com/blog/" target="_blank" class="resource-link">
-                        Visit Blog <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i>
-                    </a>
+                    <a href="https://adalysis.com/blog/" target="_blank" class="resource-link">Visit Blog <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i></a>
                 </div>
-
                 <div class="card resource-card">
                     <div>
-                        <div class="card-icon" style="background: rgba(251, 191, 36, 0.1); color: #fbbf24;">
-                            <i class="fas fa-users"></i>
-                        </div>
+                        <div class="card-icon" style="background: rgba(251, 191, 36, 0.1); color: #fbbf24;"><i class="fas fa-users"></i></div>
                         <h3>Search Engine Roundtable</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
-                            The pulse of the search marketing community. Great for catching undocumented Google updates and forum chatter.
-                        </p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">The pulse of the search marketing community.</p>
                     </div>
-                    <a href="https://www.seroundtable.com/" target="_blank" class="resource-link">
-                        Visit Site <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i>
-                    </a>
+                    <a href="https://www.seroundtable.com/" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i></a>
                 </div>
-
                 <div class="card resource-card">
                     <div>
-                        <div class="card-icon" style="background: rgba(248, 113, 113, 0.1); color: #f87171;">
-                            <i class="fas fa-newspaper"></i>
-                        </div>
+                        <div class="card-icon" style="background: rgba(248, 113, 113, 0.1); color: #f87171;"><i class="fas fa-newspaper"></i></div>
                         <h3>Search Engine Land</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
-                            Leading daily publication covering all aspects of the search marketing industry, from SEO to SEM and retail.
-                        </p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Leading daily publication covering all aspects of the search marketing industry.</p>
                     </div>
-                    <a href="https://searchengineland.com/" target="_blank" class="resource-link">
-                        Visit Site <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i>
-                    </a>
+                    <a href="https://searchengineland.com/" target="_blank" class="resource-link">Visit Site <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i></a>
                 </div>
-
                 <div class="card resource-card">
                     <div>
-                        <div class="card-icon" style="background: rgba(167, 139, 250, 0.1); color: #a78bfa;">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
+                        <div class="card-icon" style="background: rgba(167, 139, 250, 0.1); color: #a78bfa;"><i class="fas fa-shopping-cart"></i></div>
                         <h3>Smarter Ecommerce</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
-                            Specialized insights on automation, data-driven retailing, and strategic Ecommerce growth.
-                        </p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Specialized insights on automation, data-driven retailing, and strategic Ecommerce growth.</p>
                     </div>
-                    <a href="https://smarter-ecommerce.com/blog/en/" target="_blank" class="resource-link">
-                        Visit Blog <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i>
-                    </a>
+                    <a href="https://smarter-ecommerce.com/blog/en/" target="_blank" class="resource-link">Visit Blog <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i></a>
                 </div>
-
                 <div class="card resource-card">
                     <div>
-                        <div class="card-icon" style="background: rgba(52, 211, 153, 0.1); color: #34d399;">
-                            <i class="fab fa-google"></i>
-                        </div>
+                        <div class="card-icon" style="background: rgba(52, 211, 153, 0.1); color: #34d399;"><i class="fab fa-google"></i></div>
                         <h3>The Keyword (Google)</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
-                            The official source for news, updates, and stories directly from Google.
-                        </p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">The official source for news, updates, and stories directly from Google.</p>
                     </div>
-                    <a href="https://blog.google/" target="_blank" class="resource-link">
-                        Visit Blog <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i>
-                    </a>
+                    <a href="https://blog.google/" target="_blank" class="resource-link">Visit Blog <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i></a>
                 </div>
-
                 <div class="card resource-card">
                     <div>
-                        <div class="card-icon" style="background: rgba(244, 114, 182, 0.1); color: #f472b6;">
-                            <i class="fas fa-rss"></i>
-                        </div>
+                        <div class="card-icon" style="background: rgba(244, 114, 182, 0.1); color: #f472b6;"><i class="fas fa-rss"></i></div>
                         <h3>PPC Newsfeed</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
-                            A hand-picked collection of the latest news and updates from the PPC world, aggregated in one place.
-                        </p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">A hand-picked collection of the latest news and updates from the PPC world.</p>
                     </div>
-                    <a href="https://ppcnewsfeed.com/" target="_blank" class="resource-link">
-                        Visit Feed <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i>
-                    </a>
+                    <a href="https://ppcnewsfeed.com/" target="_blank" class="resource-link">Visit Feed <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i></a>
                 </div>
-
             </div>
         </div>
     </section>
