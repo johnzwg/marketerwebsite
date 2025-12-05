@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PDJVZZZ6');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Toolkit | John</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        .social-nav-icon { color: #94A3B8; font-size: 1.2rem; margin-left: 20px; transition: color 0.3s ease; }
+        .social-nav-icon:hover { color: #3B82F6; }
+
+        /* Filter Tabs */
+        .filters { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+        .filter-btn {
+            background: #151921; border: 1px solid #334155; color: #94A3B8;
+            padding: 8px 16px; border-radius: 20px; cursor: pointer; transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active { background: #3B82F6; color: white; border-color: #3B82F6; }
+
+        /* Search Bar */
+        .search-container { max-width: 500px; margin: 0 auto 40px; position: relative; }
+        .search-input {
+            width: 100%; padding: 12px 20px; padding-left: 45px;
+            background: #0F1218; border: 1px solid #334155; border-radius: 30px;
+            color: white; outline: none; font-size: 1rem;
+        }
+        .search-input:focus { border-color: #3B82F6; }
+        .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94A3B8; }
+
+        /* Tool Cards */
+        .tool-card { display: flex; flex-direction: column; height: 100%; }
+        .tool-category {
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
+            color: #3B82F6; font-weight: 700; margin-bottom: 10px;
+        }
+        .tool-link {
+            margin-top: auto; color: white; text-decoration: none;
+            background: #1e293b; padding: 10px; text-align: center; border-radius: 6px;
+            transition: background 0.3s; border: 1px solid #334155;
+        }
+        .tool-link:hover { background: #3B82F6; border-color: #3B82F6; }
+
+        /* Comment Section Styles */
+        .comments-section { max-width: 800px; margin: 60px auto 0; padding: 30px; background: #0F1218; border: 1px solid #1E293B; border-radius: 12px; }
+        .comment-form input, .comment-form textarea {
+            width: 100%; padding: 12px; margin-bottom: 15px;
+            background: #151921; border: 1px solid #334155; border-radius: 6px; color: white;
+        }
+        .comment-list { margin-top: 30px; }
+        .single-comment { border-bottom: 1px solid #1E293B; padding: 15px 0; }
+        .comment-header { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem; color: #60a5fa; }
+        .comment-body { color: #cbd5e1; }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDJVZZZ6"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">John.Dev</a>
+                <div class="nav-links" style="display: flex; align-items: center;">
+                    <a href="index.html">About</a>
+                    <a href="index.html#stack">Tech Stack</a>
+                    <a href="tools.html">Tools</a>
+                    <a href="resources.html">Reading</a>
+                    <a href="aitools.html" class="active" style="color: var(--primary);">AI Kit</a>
+                    
+                    <div style="border-left: 1px solid #334155; height: 24px; margin-left: 25px; margin-right: 5px;"></div>
+                    <a href="https://www.linkedin.com/in/giannis-zografakis-2965a0244/" target="_blank" class="social-nav-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/gianniszwg/?hl=el" target="_blank" class="social-nav-icon"><i class="fab fa-instagram"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="padding-top: 120px; padding-bottom: 20px; text-align: center;">
+        <h1>The AI <span style="color: var(--primary);">Toolkit</span></h1>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+            A curated directory of the best AI tools I use for automation, design, and productivity.
+        </p>
+    </div>
+
+    <section class="section-padding" style="padding-top: 20px;">
+        <div class="container">
+            
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search tools (e.g. 'video', 'automation')...">
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="automation">Automation</button>
+                <button class="filter-btn" data-filter="web">Web Builders</button>
+                <button class="filter-btn" data-filter="research">Research</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+                <button class="filter-btn" data-filter="audio">Audio</button>
+            </div>
+
+            <div class="stack-grid" id="toolsGrid">
+                
+                <div class="card tool-card" data-category="automation">
+                    <span class="tool-category">Automation</span>
+                    <h3>Zapier</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Connect your apps and automate workflows. The industry standard for integrations.</p>
+                    <a href="https://zapier.com/" target="_blank" class="tool-link">Visit Tool <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="card tool-card" data-category="automation">
+                    <span class="tool-category">Automation</span>
+                    <h3>Make</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Advanced visual automation platform. Build complex scenarios with logic.</p>
+                    <a href="https://www.make.com/en" target="_blank" class="tool-link">Visit Tool <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="card tool-card" data-category="automation">
+                    <span class="tool-category">AI Builder</span>
+                    <h3>Riku.ai</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Build and deploy AI models without code. Great for aggregating LLMs.</p>
+                    <a href="https://www.riku.ai/" target="_blank" class="tool-link">Visit Tool <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="card tool-card" data-category="web">
+                    <span class="tool-category">Website Builder</span>
+                    <h3>Mixo</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Launch a startup landing page in seconds from just a brief text description.</p>
+                    <a href="https://www.mixo.io/" target="_blank" class="tool-link">Visit Tool <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="card tool-card" data-category="web">
+                    <span class="tool-category">Website Builder</span>
+                    <h3>Zarla</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">AI website builder designed for small businesses. Generates websites instantly.</p>
+                    <a href="https://www.zarla.com/" target="_blank" class="tool-link">Visit Tool <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="card tool-card" data-category="web">
+                    <span class="tool-category">UI Design</span>
+                    <h3>Uizard</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Turn sketches and text prompts into editable UI designs for apps and websites.</p>
+                    <a href="https://uizard.io/" target="_blank" class="tool-link">Visit Tool <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="card tool-card" data-category="research">
+                    <span class="tool-category">Research</span>
+                    <h3>AnswerThis</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Academic research assistant. Finds papers and answers questions with citations.</p>
+                    <a href="https://answerthis.io/" target="_blank" class="tool-link">Visit Tool <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="card tool-card" data-category="research">
+                    <span class="tool-category">Productivity</span>
+                    <h3>HiPDF</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">All-in-one PDF AI tool. Chat with your PDFs, summarize content, and convert files.</p>
+                    <a href="https://www.hipdf.com/" target="_blank" class="tool-link">Visit Tool <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="card tool-card" data-category="design">
+                    <span class="tool-category">Design</span>
+                    <h3>Gamma</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Create beautiful presentations, documents, and webpages from text prompts.</p>
+                    <a href="https://gamma.design/" target="_blank" class="tool-link">Visit Tool <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="card tool-card" data-category="design">
+                    <span class="tool-category">Interior Design</span>
+                    <h3>Collov.ai</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">AI interior design tool. Upload a room photo and instantly redesign the furniture.</p>
+                    <a href="https://collov.ai/" target="_blank" class="tool-link">Visit Tool <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="card tool-card" data-category="audio">
+                    <span class="tool-category">Audio</span>
+                    <h3>Transkriptor</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Convert audio and video to text automatically. Supports multiple languages.</p>
+                    <a href="https://transkriptor.com/el/" target="_blank" class="tool-link">Visit Tool <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="padding-top: 0;">
+        <div class="container">
+            <div class="comments-section">
+                <h3 style="color: white; margin-bottom: 20px;">Discussion</h3>
+                <p style="color: #94A3B8; margin-bottom: 20px; font-size: 0.9rem;">Have you used any of these tools? Leave a comment below.</p>
+                
+                <form id="commentForm" class="comment-form">
+                    <input type="text" id="commentName" placeholder="Your Name" required>
+                    <textarea id="commentBody" rows="3" placeholder="Write your comment..." required></textarea>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Post Comment</button>
+                </form>
+
+                <div id="commentsContainer" class="comment-list">
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p style="margin-bottom: 10px;">&copy; 2025 John. Built with custom code.</p>
+            <div style="font-size: 0.85rem;">
+                <a href="legal.html" style="color: var(--text-muted); text-decoration: none; margin: 0 10px;">Privacy & Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. FILTERING & SEARCH LOGIC ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const searchInput = document.getElementById('searchInput');
+        const cards = document.querySelectorAll('.tool-card');
+
+        function filterTools(category) {
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filterValue = btn.getAttribute('data-filter');
+                filterTools(filterValue);
+                searchInput.value = '';
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const desc = card.querySelector('p').textContent.toLowerCase();
+                const category = card.getAttribute('data-category');
+                
+                if (title.includes(term) || desc.includes(term) || category.includes(term)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            filterBtns.forEach(b => b.classList.remove('active'));
+        });
+
+        // --- 2. COMMENT SYSTEM LOGIC (Local Storage) ---
+        const commentForm = document.getElementById('commentForm');
+        const commentsContainer = document.getElementById('commentsContainer');
+        const PAGE_ID = 'aitools_comments'; // Unique ID for this page
+
+        // Load comments on page load
+        window.addEventListener('load', () => {
+            const storedComments = JSON.parse(localStorage.getItem(PAGE_ID)) || [];
+            storedComments.forEach(comment => addCommentToDOM(comment));
+        });
+
+        commentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('commentName').value;
+            const body = document.getElementById('commentBody').value;
+            const date = new Date().toLocaleDateString();
+
+            const commentObj = { name, body, date };
+
+            // Save to Local Storage
+            const storedComments = JSON.parse(localStorage.getItem(PAGE_ID)) || [];
+            storedComments.unshift(commentObj); // Add to top
+            localStorage.setItem(PAGE_ID, JSON.stringify(storedComments));
+
+            // Add to UI
+            addCommentToDOM(commentObj);
+            commentForm.reset();
+        });
+
+        function addCommentToDOM(comment) {
+            const div = document.createElement('div');
+            div.className = 'single-comment';
+            div.innerHTML = `
+                <div class="comment-header">
+                    <strong>${comment.name}</strong>
+                    <span>${comment.date}</span>
+                </div>
+                <div class="comment-body">${comment.body}</div>
+            `;
+            // Insert at the beginning
+            commentsContainer.insertBefore(div, commentsContainer.firstChild);
+        }
+    </script>
+</body>
+</html>
