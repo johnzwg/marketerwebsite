@@ -20,10 +20,18 @@
         <div class="container">
             <nav>
                 <a href="index.html" class="logo">John.Dev</a>
-                <div class="nav-links">
+                <div class="nav-links" style="display: flex; align-items: center;">
                     <a href="index.html">About</a>
                     <a href="index.html#stack">Tech Stack</a>
                     <a href="tools.html" class="active" style="color: var(--primary);">Tools</a>
+                    <a href="resources.html">Reading</a> <div style="border-left: 1px solid #334155; height: 24px; margin-left: 25px; margin-right: 5px;"></div>
+                    
+                    <a href="https://www.linkedin.com/in/giannis-zografakis-2965a0244/" target="_blank" class="social-nav-icon" style="color: #94A3B8; font-size: 1.2rem; margin-left: 20px;">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/gianniszwg/?hl=el" target="_blank" class="social-nav-icon" style="color: #94A3B8; font-size: 1.2rem; margin-left: 20px;">
+                        <i class="fab fa-instagram"></i>
+                    </a>
                 </div>
             </nav>
         </div>
@@ -40,46 +48,38 @@
                 <div class="tool-header">
                     <span style="color: var(--primary); font-weight:bold; letter-spacing: 1px; font-size:0.8rem;">TRACKING</span>
                     <h2>UTM Campaign Builder</h2>
-                    <p>Standardize your tracking parameters instantly. Matches Google's specifications.</p>
+                    <p>Enter the website URL and campaign information.</p>
+                    <p style="font-size: 0.9rem; color: #94a3b8;">Fill out all fields marked with an asterisk (*), and the campaign URL will be generated for you.</p>
                 </div>
 
                 <form id="utmForm">
                     <div class="form-group full-width">
-                        <label>Website URL *</label>
-                        <input type="url" id="baseUrl" placeholder="https://www.yourdomain.com" required>
+                        <label>website URL *</label>
+                        <input type="url" id="baseUrl" placeholder="The full website URL (e.g. https://www.example.com)" required>
                     </div>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Campaign ID (utm_id)</label>
-                            <input type="text" id="utmId" placeholder="e.g. abc.123">
-                        </div>
-                        <div class="form-group">
-                            <label>Campaign Name (utm_campaign) *</label>
-                            <input type="text" id="utmCampaign" placeholder="e.g. summer_sale" required>
-                        </div>
+                    <div class="form-group full-width">
+                        <label>campaign ID</label>
+                        <input type="text" id="utmId" placeholder="The ads campaign id.">
                     </div>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Campaign Source (utm_source) *</label>
-                            <input type="text" id="utmSource" placeholder="e.g. google, newsletter" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Campaign Medium (utm_medium) *</label>
-                            <input type="text" id="utmMedium" placeholder="e.g. cpc, email" required>
-                        </div>
+                    <div class="form-group full-width">
+                        <label>campaign source *</label>
+                        <input type="text" id="utmSource" placeholder="The referrer (e.g. google, newsletter)" required>
                     </div>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Campaign Term (utm_term)</label>
-                            <input type="text" id="utmTerm" placeholder="Identify the paid keywords">
-                        </div>
-                        <div class="form-group">
-                            <label>Campaign Content (utm_content)</label>
-                            <input type="text" id="utmContent" placeholder="Use to differentiate ads">
-                        </div>
+                    <div class="form-group full-width">
+                        <label>campaign medium *</label>
+                        <input type="text" id="utmMedium" placeholder="Marketing medium (e.g. cpc, banner, email)" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>campaign name *</label>
+                        <input type="text" id="utmCampaign" placeholder="Product, promo code, or slogan (e.g. spring_sale)" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>campaign term</label>
+                        <input type="text" id="utmTerm" placeholder="Identify the paid keywords">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>campaign content</label>
+                        <input type="text" id="utmContent" placeholder="Use to differentiate ads">
                     </div>
                 </form>
 
@@ -99,9 +99,8 @@
                 <div class="tool-header">
                     <span style="color: #8B5CF6; font-weight:bold; letter-spacing: 1px; font-size:0.8rem;">TECHNICAL</span>
                     <h2>GTM Data Layer Generator</h2>
-                    <p>Generate valid JavaScript code for GA4 Ecommerce events (Purchase, AddToCart) instantly.</p>
+                    <p>Generate valid JavaScript code for GA4 Ecommerce events instantly.</p>
                 </div>
-
                 <div class="form-grid">
                     <div class="form-group">
                         <label>Event Name</label>
@@ -116,7 +115,6 @@
                         <input type="text" id="currency" value="EUR">
                     </div>
                 </div>
-
                 <div class="form-grid">
                     <div class="form-group">
                         <label>Transaction ID / Order ID</label>
@@ -127,10 +125,8 @@
                         <input type="number" id="totalValue" placeholder="e.g. 59.90">
                     </div>
                 </div>
-
                 <hr style="border: 0; border-top: 1px solid var(--border); margin: 20px 0;">
                 <p style="color: #fff; font-size: 0.9rem; margin-bottom: 10px;">Item Details (Single Item Example)</p>
-
                 <div class="form-grid">
                     <div class="form-group">
                         <label>Item ID / SKU</label>
@@ -141,7 +137,6 @@
                         <input type="text" id="itemName" placeholder="e.g. Blue T-Shirt">
                     </div>
                 </div>
-
                 <div class="result-box" style="background: #1e1e1e; border-color: #333;">
                     <div style="margin-bottom: 10px; font-size: 0.8rem; color: #8B5CF6; font-family: monospace;">// Copy and paste this into console or scripts</div>
                     <pre id="codeOutput" style="color: #A5B4FC; font-family: 'Consolas', monospace; white-space: pre-wrap; word-break: break-all;">
@@ -165,10 +160,9 @@
     </footer>
 
     <script>
-        // --- UTM BUILDER LOGIC ---
+        // UTM LOGIC
         const utmInputs = document.querySelectorAll('#utmForm input');
         const display = document.getElementById('finalUrl');
-
         function generateURL() {
             const urlVal = document.getElementById('baseUrl').value.trim();
             const source = document.getElementById('utmSource').value.trim();
@@ -183,34 +177,25 @@
                 display.textContent = 'Enter a valid Website URL to start...';
                 return;
             }
-
             try {
                 let finalBase = urlVal;
-                if (!/^https?:\/\//i.test(finalBase)) {
-                    finalBase = 'https://' + finalBase;
-                }
+                if (!/^https?:\/\//i.test(finalBase)) { finalBase = 'https://' + finalBase; }
                 const urlObj = new URL(finalBase);
-                
                 if (source) urlObj.searchParams.set('utm_source', source);
                 if (medium) urlObj.searchParams.set('utm_medium', medium);
                 if (campaign) urlObj.searchParams.set('utm_campaign', campaign);
                 if (id) urlObj.searchParams.set('utm_id', id);
                 if (term) urlObj.searchParams.set('utm_term', term);
                 if (content) urlObj.searchParams.set('utm_content', content);
-
                 display.style.color = '#10B981';
                 display.textContent = urlObj.toString();
-            } catch (e) {
-                display.textContent = 'Invalid URL format';
-            }
+            } catch (e) { display.textContent = 'Invalid URL format'; }
         }
-
         utmInputs.forEach(input => input.addEventListener('input', generateURL));
 
-        // --- GTM DATA LAYER GENERATOR LOGIC ---
+        // GTM LOGIC
         const gtmInputs = document.querySelectorAll('#eventName, #currency, #transactionId, #totalValue, #itemId, #itemName');
         const codeDisplay = document.getElementById('codeOutput');
-
         function generateDataLayer() {
             const eventName = document.getElementById('eventName').value;
             const currency = document.getElementById('currency').value || 'EUR';
@@ -218,45 +203,25 @@
             const value = document.getElementById('totalValue').value || 0;
             const itemId = document.getElementById('itemId').value || 'SKU_123';
             const itemName = document.getElementById('itemName').value || 'Product Name';
-
-            // Construct the Object
             const dlObject = {
                 event: eventName,
                 ecommerce: {
                     currency: currency,
                     value: parseFloat(value),
                     transaction_id: transId,
-                    items: [
-                        {
-                            item_id: itemId,
-                            item_name: itemName,
-                            price: parseFloat(value) // Simplified for single item example
-                        }
-                    ]
+                    items: [{ item_id: itemId, item_name: itemName, price: parseFloat(value) }]
                 }
             };
-
-            // Remove transaction_id if not purchase
-            if(eventName !== 'purchase') {
-                delete dlObject.ecommerce.transaction_id;
-            }
-
-            // Convert to formatted string
+            if(eventName !== 'purchase') { delete dlObject.ecommerce.transaction_id; }
             const jsonString = JSON.stringify(dlObject, null, 4);
             codeDisplay.textContent = `window.dataLayer.push(${jsonString});`;
         }
-
         gtmInputs.forEach(input => input.addEventListener('input', generateDataLayer));
-        // Run once on load
         window.addEventListener('load', generateDataLayer);
 
-
-        // --- GENERIC COPY FUNCTION ---
         function copyToClipboard(elementId) {
             const textToCopy = document.getElementById(elementId).textContent;
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                alert("Copied to clipboard!");
-            });
+            navigator.clipboard.writeText(textToCopy).then(() => { alert("Copied!"); });
         }
     </script>
 </body>
