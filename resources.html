@@ -16,8 +16,20 @@
     <style>
         .social-nav-icon { color: #94A3B8; font-size: 1.2rem; margin-left: 20px; transition: color 0.3s ease; }
         .social-nav-icon:hover { color: #3B82F6; }
-        .resource-card { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
-        .resource-link { color: #60a5fa; font-weight: 600; margin-top: auto; display: inline-flex; align-items: center; }
+        
+        .resource-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .resource-link {
+            color: #60a5fa;
+            font-weight: 600;
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+        }
         .resource-link:hover { text-decoration: underline; }
     </style>
 </head>
@@ -36,11 +48,10 @@
                     <a href="resources.html" class="active" style="color: var(--primary);">Reading</a>
                     <a href="aitools.html">AI Kit</a>
                     
-                    <a href="contact.html" style="margin-left: 20px; border: 1px solid #334155; padding: 8px 16px; border-radius: 6px; font-size: 0.9rem;">Contact</a>
-
                     <div style="border-left: 1px solid #334155; height: 24px; margin-left: 25px; margin-right: 5px;"></div>
-                    <a href="https://www.linkedin.com/in/giannis-zografakis-2965a0244/" target="_blank" class="social-nav-icon"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.instagram.com/gianniszwg/?hl=el" target="_blank" class="social-nav-icon"><i class="fab fa-instagram"></i></a>
+                    
+                    <a href="https://www.linkedin.com/in/giannis-zografakis-2965a0244/" target="_blank" class="social-nav-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/gianniszwg/?hl=el" target="_blank" class="social-nav-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </nav>
         </div>
@@ -59,16 +70,31 @@
                     <div>
                         <div class="card-icon" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;"><i class="fas fa-laptop-code"></i></div>
                         <h3>Analytics Mania</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">The "bible" for Google Tag Manager. In-depth guides on GA4 implementation.</p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+                            The "bible" for Google Tag Manager. In-depth guides on GA4 implementation and debugging.
+                        </p>
                     </div>
                     <a href="https://www.analyticsmania.com/blog/" target="_blank" class="resource-link">Visit Blog <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i></a>
                 </div>
 
                 <div class="card resource-card">
                     <div>
+                        <div class="card-icon" style="background: rgba(236, 72, 153, 0.1); color: #ec4899;"><i class="fas fa-heart"></i></div>
+                        <h3>Loves Data</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+                            Benjamin Mangold's blog is a treasure trove for clear, step-by-step tutorials on GA4, Google Ads, and Looker Studio.
+                        </p>
+                    </div>
+                    <a href="https://www.lovesdata.com/blog/" target="_blank" class="resource-link">Visit Blog <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i></a>
+                </div>
+
+                <div class="card resource-card">
+                    <div>
                         <div class="card-icon" style="background: rgba(249, 115, 22, 0.1); color: #f97316;"><i class="fas fa-ruler-combined"></i></div>
                         <h3>MeasureSchool</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Video tutorials on tracking techniques, Looker Studio, and data visualization.</p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+                            The go-to resource for video tutorials on tracking techniques, Looker Studio, and data visualization.
+                        </p>
                     </div>
                     <a href="https://measureschool.com/blog/" target="_blank" class="resource-link">Visit Blog <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i></a>
                 </div>
