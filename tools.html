@@ -17,284 +17,967 @@
     <style>
         .social-nav-icon { color: #94A3B8; font-size: 1.2rem; margin-left: 20px; transition: color 0.3s ease; }
         .social-nav-icon:hover { color: #3B82F6; }
-        
+
+        /* ── Tool Nav ── */
+        .tool-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 50px; }
+        .tool-nav a { background: #151921; border: 1px solid #334155; color: #94A3B8; padding: 8px 16px; border-radius: 20px; font-size: 0.82rem; text-decoration: none; transition: all 0.3s; }
+        .tool-nav a:hover { background: #3B82F6; color: white; border-color: #3B82F6; }
+
+        /* ── Comments ── */
         .comments-section { max-width: 800px; margin: 60px auto 0; padding: 30px; background: #0F1218; border: 1px solid #1E293B; border-radius: 12px; }
         .comment-form input, .comment-form textarea { width: 100%; padding: 12px; margin-bottom: 15px; background: #151921; border: 1px solid #334155; border-radius: 6px; color: white; }
         .comment-list { margin-top: 30px; }
         .single-comment { border-bottom: 1px solid #1E293B; padding: 15px 0; }
         .comment-header { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem; color: #60a5fa; }
         .comment-body { color: #cbd5e1; }
+
+        /* ── Shared badge ── */
+        .tool-badge { font-weight: bold; letter-spacing: 1px; font-size: 0.8rem; margin-bottom: 6px; display: inline-block; }
+
+        /* ── SERP Preview ── */
+        .serp-preview { background: #fff; border-radius: 8px; padding: 16px 20px; margin-top: 16px; }
+        .serp-preview .serp-title { color: #1a0dab; font-size: 1.1rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .serp-preview .serp-title.over { color: #e53e3e; }
+        .serp-preview .serp-url { color: #188038; font-size: 0.82rem; margin: 2px 0 4px; }
+        .serp-preview .serp-desc { color: #4d5156; font-size: 0.88rem; line-height: 1.5; }
+        .char-bar { height: 6px; border-radius: 3px; background: #1E293B; margin-top: 6px; overflow: hidden; }
+        .char-bar-fill { height: 100%; border-radius: 3px; transition: width 0.3s, background 0.3s; }
+
+        /* ── Color swatches ── */
+        .swatch-row { display: flex; gap: 12px; align-items: center; margin-top: 16px; }
+        .swatch { width: 56px; height: 56px; border-radius: 8px; border: 2px solid #334155; }
+        .contrast-badge { font-size: 1.4rem; font-weight: 800; padding: 8px 18px; border-radius: 8px; }
+
+        /* ── Keyword table ── */
+        .kw-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        .kw-table th { text-align: left; color: #94A3B8; font-size: 0.8rem; padding: 6px 10px; border-bottom: 1px solid #334155; }
+        .kw-table td { padding: 7px 10px; color: #cbd5e1; font-size: 0.9rem; border-bottom: 1px solid #1E293B; }
+        .kw-bar { background: #1E293B; border-radius: 3px; height: 8px; }
+        .kw-bar-fill { background: #3B82F6; border-radius: 3px; height: 8px; }
+
+        /* ── Spam badge ── */
+        .spam-flag { display: inline-block; background: #7f1d1d; color: #fca5a5; border-radius: 4px; padding: 2px 8px; font-size: 0.78rem; margin: 2px; }
+        .score-circle { width: 90px; height: 90px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 800; margin: 16px auto; border: 4px solid; }
+
+        /* ── CSV/JSON ── */
+        .split-pane { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media(max-width:640px){ .split-pane { grid-template-columns: 1fr; } }
+        .split-pane textarea { width: 100%; min-height: 200px; background: #0F1218; border: 1px solid #334155; border-radius: 6px; color: #A5B4FC; font-family: 'Consolas', monospace; font-size: 0.82rem; padding: 12px; resize: vertical; }
     </style>
 </head>
 <body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDJVZZZ6"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDJVZZZ6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-    <header>
-        <div class="container">
-            <nav>
-                <a href="index.html" class="logo">John.Dev</a>
-                <div class="nav-links" style="display: flex; align-items: center;">
-                    <a href="index.html">About</a>
-                    <a href="index.html#stack">Tech Stack</a>
-                    <a href="tools.html" class="active" style="color: var(--primary);">Tools</a>
-                    <a href="resources.html">Reading</a>
-                    <a href="aitools.html">AI Kit</a>
-                    
-                    <a href="contact.html" style="margin-left: 20px; border: 1px solid #334155; padding: 8px 16px; border-radius: 6px; font-size: 0.9rem;">Contact</a>
-
-                    <div style="border-left: 1px solid #334155; height: 24px; margin-left: 25px; margin-right: 5px;"></div>
-                    <a href="https://www.linkedin.com/in/giannis-zografakis-2965a0244/" target="_blank" class="social-nav-icon"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.instagram.com/gianniszwg/?hl=el" target="_blank" class="social-nav-icon"><i class="fab fa-instagram"></i></a>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <div class="container" style="padding-top: 120px; padding-bottom: 40px; text-align: center;">
-        <h1>Marketing <span style="color: var(--primary);">Utility Belt</span></h1>
-        <p style="color: var(--text-muted);">Automation tools to speed up daily workflows.</p>
+<header>
+    <div class="container">
+        <nav>
+            <a href="index.html" class="logo">John.Dev</a>
+            <div class="nav-links" style="display:flex;align-items:center;">
+                <a href="index.html">About</a>
+                <a href="index.html#stack">Tech Stack</a>
+                <a href="tools.html" class="active" style="color:var(--primary);">Tools</a>
+                <a href="resources.html">Reading</a>
+                <a href="aitools.html">AI Kit</a>
+                <a href="contact.html" style="margin-left:20px;border:1px solid #334155;padding:8px 16px;border-radius:6px;font-size:0.9rem;">Contact</a>
+                <div style="border-left:1px solid #334155;height:24px;margin-left:25px;margin-right:5px;"></div>
+                <a href="https://www.linkedin.com/in/giannis-zografakis-2965a0244/" target="_blank" class="social-nav-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/gianniszwg/?hl=el" target="_blank" class="social-nav-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+        </nav>
     </div>
+</header>
 
-    <section class="section-padding" style="padding-top: 20px;">
-        <div class="container">
-            <div class="tool-wrapper">
-                <div class="tool-header">
-                    <span style="color: var(--primary); font-weight:bold; letter-spacing: 1px; font-size:0.8rem;">TRACKING</span>
-                    <h2>UTM Campaign Builder</h2>
-                    <p>Standardize your tracking parameters instantly.</p>
-                </div>
-                <form id="utmForm">
-                    <div class="form-group full-width"><label>website URL *</label><input type="url" id="baseUrl" placeholder="https://www.example.com" required></div>
-                    <div class="form-group full-width"><label>campaign ID</label><input type="text" id="utmId" placeholder="The ads campaign id."></div>
-                    <div class="form-group full-width"><label>campaign source *</label><input type="text" id="utmSource" placeholder="google, newsletter" required></div>
-                    <div class="form-group full-width"><label>campaign medium *</label><input type="text" id="utmMedium" placeholder="cpc, email" required></div>
-                    <div class="form-group full-width"><label>campaign name *</label><input type="text" id="utmCampaign" placeholder="spring_sale" required></div>
-                    <div class="form-group full-width"><label>campaign term</label><input type="text" id="utmTerm" placeholder="paid keywords"></div>
-                    <div class="form-group full-width"><label>campaign content</label><input type="text" id="utmContent" placeholder="differentiate ads"></div>
-                </form>
-                <div class="result-box">
-                    <div id="finalUrl" class="generated-url">Fill in the fields...</div>
-                    <button class="copy-btn" onclick="copyToClipboard('finalUrl')"><i class="fas fa-copy"></i></button>
-                </div>
+<div class="container" style="padding-top:120px;padding-bottom:40px;text-align:center;">
+    <h1>Marketing <span style="color:var(--primary);">Utility Belt</span></h1>
+    <p style="color:var(--text-muted);">14 automation tools to speed up daily workflows.</p>
+</div>
+
+<!-- ── Quick Nav ── -->
+<div class="container">
+    <div class="tool-nav">
+        <a href="#utm-builder">UTM Builder</a>
+        <a href="#utm-decoder">UTM Decoder</a>
+        <a href="#gtm-datalayer">GTM Data Layer</a>
+        <a href="#ga4-validator">GA4 Validator</a>
+        <a href="#ab-test">A/B Test Calc</a>
+        <a href="#roas">ROAS / ROI</a>
+        <a href="#ads-metrics">CPM / CPC / CPA</a>
+        <a href="#quality-score">Quality Score</a>
+        <a href="#serp-preview">SERP Preview</a>
+        <a href="#keyword-density">Keyword Density</a>
+        <a href="#subject-line">Subject Line</a>
+        <a href="#spam-checker">Spam Checker</a>
+        <a href="#csv-json">CSV → JSON</a>
+        <a href="#contrast">Contrast Checker</a>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     1. UTM CAMPAIGN BUILDER
+════════════════════════════════════════ -->
+<section class="section-padding" id="utm-builder" style="padding-top:20px;">
+    <div class="container">
+        <div class="tool-wrapper">
+            <div class="tool-header">
+                <span class="tool-badge" style="color:var(--primary);">TRACKING</span>
+                <h2>UTM Campaign Builder</h2>
+                <p>Standardize your tracking parameters instantly.</p>
+            </div>
+            <form id="utmForm">
+                <div class="form-group full-width"><label>Website URL *</label><input type="url" id="baseUrl" placeholder="https://www.example.com" required></div>
+                <div class="form-group full-width"><label>Campaign ID</label><input type="text" id="utmId" placeholder="The ads campaign id."></div>
+                <div class="form-group full-width"><label>Campaign Source *</label><input type="text" id="utmSource" placeholder="google, newsletter" required></div>
+                <div class="form-group full-width"><label>Campaign Medium *</label><input type="text" id="utmMedium" placeholder="cpc, email" required></div>
+                <div class="form-group full-width"><label>Campaign Name *</label><input type="text" id="utmCampaign" placeholder="spring_sale" required></div>
+                <div class="form-group full-width"><label>Campaign Term</label><input type="text" id="utmTerm" placeholder="paid keywords"></div>
+                <div class="form-group full-width"><label>Campaign Content</label><input type="text" id="utmContent" placeholder="differentiate ads"></div>
+            </form>
+            <div class="result-box">
+                <div id="finalUrl" class="generated-url">Fill in the fields...</div>
+                <button class="copy-btn" onclick="copyEl('finalUrl')"><i class="fas fa-copy"></i></button>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="section-padding" style="padding-top: 0;">
-        <div class="container">
-            <div class="tool-wrapper" style="border-color: #8B5CF6;">
-                <div class="tool-header">
-                    <span style="color: #8B5CF6; font-weight:bold; letter-spacing: 1px; font-size:0.8rem;">TECHNICAL</span>
-                    <h2>GTM Data Layer Generator</h2>
-                    <p>Generate valid JavaScript code for GA4 Ecommerce events.</p>
-                </div>
-                <div class="form-grid">
-                    <div class="form-group"><label>Event Name</label><select id="eventName"><option value="purchase">Purchase</option><option value="add_to_cart">Add to Cart</option><option value="begin_checkout">Begin Checkout</option></select></div>
-                    <div class="form-group"><label>Currency</label><input type="text" id="currency" value="EUR"></div>
-                </div>
-                <div class="form-grid">
-                    <div class="form-group"><label>Transaction ID</label><input type="text" id="transactionId" placeholder="T_12345"></div>
-                    <div class="form-group"><label>Total Value</label><input type="number" id="totalValue" placeholder="59.90"></div>
-                </div>
-                <div class="form-grid">
-                    <div class="form-group"><label>Item ID / SKU</label><input type="text" id="itemId" placeholder="SKU_999"></div>
-                    <div class="form-group"><label>Item Name</label><input type="text" id="itemName" placeholder="Blue T-Shirt"></div>
-                </div>
-                <div class="result-box" style="background: #1e1e1e; border-color: #333;">
-                    <pre id="codeOutput" style="color: #A5B4FC; font-family: 'Consolas', monospace; white-space: pre-wrap;">// Code...</pre>
-                    <button class="copy-btn" onclick="copyToClipboard('codeOutput')"><i class="fas fa-code"></i></button>
-                </div>
+<!-- ════════════════════════════════════════
+     2. UTM DECODER
+════════════════════════════════════════ -->
+<section class="section-padding" id="utm-decoder" style="padding-top:0;">
+    <div class="container">
+        <div class="tool-wrapper" style="border-color:#F59E0B;">
+            <div class="tool-header">
+                <span class="tool-badge" style="color:#F59E0B;">TRACKING</span>
+                <h2>UTM Decoder</h2>
+                <p>Paste any UTM URL and break down every parameter at a glance.</p>
+            </div>
+            <div class="form-group full-width">
+                <label>Paste UTM URL</label>
+                <input type="text" id="decodeInput" placeholder="https://example.com?utm_source=google&utm_medium=cpc..." oninput="decodeUTM()">
+            </div>
+            <div id="decodeResult" style="margin-top:16px;display:none;">
+                <table style="width:100%;border-collapse:collapse;">
+                    <thead><tr>
+                        <th style="text-align:left;color:#94A3B8;font-size:0.8rem;padding:8px 10px;border-bottom:1px solid #334155;">Parameter</th>
+                        <th style="text-align:left;color:#94A3B8;font-size:0.8rem;padding:8px 10px;border-bottom:1px solid #334155;">Value</th>
+                    </tr></thead>
+                    <tbody id="decodeBody"></tbody>
+                </table>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="section-padding" style="padding-top: 0;">
-        <div class="container">
-            <div class="tool-wrapper" style="border-color: #10B981;">
-                <div class="tool-header">
-                    <span style="color: #10B981; font-weight:bold; letter-spacing: 1px; font-size:0.8rem;">DATA SCIENCE</span>
-                    <h2>A/B Test Significance Calc</h2>
-                    <p>Check if your campaign results are statistically significant.</p>
+<!-- ════════════════════════════════════════
+     3. GTM DATA LAYER GENERATOR
+════════════════════════════════════════ -->
+<section class="section-padding" id="gtm-datalayer" style="padding-top:0;">
+    <div class="container">
+        <div class="tool-wrapper" style="border-color:#8B5CF6;">
+            <div class="tool-header">
+                <span class="tool-badge" style="color:#8B5CF6;">TECHNICAL</span>
+                <h2>GTM Data Layer Generator</h2>
+                <p>Generate valid JavaScript code for GA4 Ecommerce events.</p>
+            </div>
+            <div class="form-grid">
+                <div class="form-group"><label>Event Name</label><select id="eventName"><option value="purchase">Purchase</option><option value="add_to_cart">Add to Cart</option><option value="begin_checkout">Begin Checkout</option></select></div>
+                <div class="form-group"><label>Currency</label><input type="text" id="currency" value="EUR"></div>
+            </div>
+            <div class="form-grid">
+                <div class="form-group"><label>Transaction ID</label><input type="text" id="transactionId" placeholder="T_12345"></div>
+                <div class="form-group"><label>Total Value</label><input type="number" id="totalValue" placeholder="59.90"></div>
+            </div>
+            <div class="form-grid">
+                <div class="form-group"><label>Item ID / SKU</label><input type="text" id="itemId" placeholder="SKU_999"></div>
+                <div class="form-group"><label>Item Name</label><input type="text" id="itemName" placeholder="Blue T-Shirt"></div>
+            </div>
+            <div class="result-box" style="background:#1e1e1e;border-color:#333;">
+                <pre id="codeOutput" style="color:#A5B4FC;font-family:'Consolas',monospace;white-space:pre-wrap;">// Code...</pre>
+                <button class="copy-btn" onclick="copyEl('codeOutput')"><i class="fas fa-code"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     4. GA4 EVENT VALIDATOR
+════════════════════════════════════════ -->
+<section class="section-padding" id="ga4-validator" style="padding-top:0;">
+    <div class="container">
+        <div class="tool-wrapper" style="border-color:#06B6D4;">
+            <div class="tool-header">
+                <span class="tool-badge" style="color:#06B6D4;">ANALYTICS</span>
+                <h2>GA4 Event Validator</h2>
+                <p>Check if your event names and parameters follow GA4 naming rules.</p>
+            </div>
+            <div class="form-grid">
+                <div class="form-group"><label>Event Name</label><input type="text" id="ga4EventName" placeholder="add_to_cart" oninput="validateGA4()"></div>
+                <div class="form-group"><label>Parameter Name</label><input type="text" id="ga4ParamName" placeholder="item_id" oninput="validateGA4()"></div>
+            </div>
+            <div id="ga4Results" style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     5. A/B TEST SIGNIFICANCE CALCULATOR
+════════════════════════════════════════ -->
+<section class="section-padding" id="ab-test" style="padding-top:0;">
+    <div class="container">
+        <div class="tool-wrapper" style="border-color:#10B981;">
+            <div class="tool-header">
+                <span class="tool-badge" style="color:#10B981;">DATA SCIENCE</span>
+                <h2>A/B Test Significance Calc</h2>
+                <p>Check if your campaign results are statistically significant.</p>
+            </div>
+            <div class="form-grid">
+                <div style="background:#151921;padding:20px;border-radius:8px;border:1px solid #334155;">
+                    <h3 style="color:#94A3B8;font-size:1rem;margin-bottom:15px;">Version A (Control)</h3>
+                    <div class="form-group" style="margin-bottom:15px;"><label>Visitors</label><input type="number" id="visitorsA" placeholder="e.g. 1000"></div>
+                    <div class="form-group"><label>Conversions</label><input type="number" id="conversionsA" placeholder="e.g. 50"></div>
                 </div>
-                <div class="form-grid">
-                    <div style="background: #151921; padding: 20px; border-radius: 8px; border: 1px solid #334155;">
-                        <h3 style="color: #94A3B8; font-size: 1rem; margin-bottom: 15px;">Version A (Control)</h3>
-                        <div class="form-group" style="margin-bottom: 15px;"><label>Visitors</label><input type="number" id="visitorsA" placeholder="e.g. 1000"></div>
-                        <div class="form-group"><label>Conversions</label><input type="number" id="conversionsA" placeholder="e.g. 50"></div>
+                <div style="background:#151921;padding:20px;border-radius:8px;border:1px solid #334155;">
+                    <h3 style="color:#94A3B8;font-size:1rem;margin-bottom:15px;">Version B (Variation)</h3>
+                    <div class="form-group" style="margin-bottom:15px;"><label>Visitors</label><input type="number" id="visitorsB" placeholder="e.g. 1000"></div>
+                    <div class="form-group"><label>Conversions</label><input type="number" id="conversionsB" placeholder="e.g. 65"></div>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="calculateSignificance()" style="width:100%;margin-top:20px;background:#10B981;">Calculate & Visualize</button>
+            <div class="result-box" id="abResultBox" style="display:none;text-align:center;border-color:#10B981;">
+                <h3 id="abResultTitle" style="color:#fff;margin-bottom:10px;"></h3>
+                <p id="abResultDesc" style="color:#94A3B8;margin-bottom:20px;"></p>
+                <div style="max-width:500px;margin:0 auto;"><canvas id="abChart"></canvas></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     6. ROAS / ROI CALCULATOR
+════════════════════════════════════════ -->
+<section class="section-padding" id="roas" style="padding-top:0;">
+    <div class="container">
+        <div class="tool-wrapper" style="border-color:#F97316;">
+            <div class="tool-header">
+                <span class="tool-badge" style="color:#F97316;">PERFORMANCE</span>
+                <h2>ROAS / ROI Calculator</h2>
+                <p>Instantly calculate your Return on Ad Spend and profitability.</p>
+            </div>
+            <div class="form-grid">
+                <div class="form-group"><label>Ad Spend (€)</label><input type="number" id="adSpend" placeholder="500" oninput="calcROAS()"></div>
+                <div class="form-group"><label>Revenue Generated (€)</label><input type="number" id="adRevenue" placeholder="2000" oninput="calcROAS()"></div>
+            </div>
+            <div class="form-grid">
+                <div class="form-group"><label>Cost of Goods / Expenses (€)</label><input type="number" id="adCOGS" placeholder="800" oninput="calcROAS()"></div>
+                <div class="form-group"><label>Gross Profit (auto)</label><input type="number" id="adGrossProfit" placeholder="—" readonly style="opacity:0.5;"></div>
+            </div>
+            <div id="roasResult" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     7. CPM / CPC / CPA CONVERTER
+════════════════════════════════════════ -->
+<section class="section-padding" id="ads-metrics" style="padding-top:0;">
+    <div class="container">
+        <div class="tool-wrapper" style="border-color:#EC4899;">
+            <div class="tool-header">
+                <span class="tool-badge" style="color:#EC4899;">AD METRICS</span>
+                <h2>CPM / CPC / CPA Converter</h2>
+                <p>Convert between key ad metrics — fill in any fields you know.</p>
+            </div>
+            <div class="form-grid">
+                <div class="form-group"><label>Impressions</label><input type="number" id="mImpressions" placeholder="100000" oninput="calcMetrics()"></div>
+                <div class="form-group"><label>Clicks</label><input type="number" id="mClicks" placeholder="2000" oninput="calcMetrics()"></div>
+            </div>
+            <div class="form-grid">
+                <div class="form-group"><label>Conversions</label><input type="number" id="mConversions" placeholder="50" oninput="calcMetrics()"></div>
+                <div class="form-group"><label>Total Spend (€)</label><input type="number" id="mSpend" placeholder="300" oninput="calcMetrics()"></div>
+            </div>
+            <div id="metricsResult" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     8. GOOGLE ADS QUALITY SCORE ESTIMATOR
+════════════════════════════════════════ -->
+<section class="section-padding" id="quality-score" style="padding-top:0;">
+    <div class="container">
+        <div class="tool-wrapper" style="border-color:#4ADE80;">
+            <div class="tool-header">
+                <span class="tool-badge" style="color:#4ADE80;">GOOGLE ADS</span>
+                <h2>Quality Score Estimator</h2>
+                <p>Estimate your Google Ads Quality Score based on 3 key factors.</p>
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Expected CTR</label>
+                    <select id="qsCTR" onchange="calcQS()">
+                        <option value="1">Below Average</option>
+                        <option value="2" selected>Average</option>
+                        <option value="3">Above Average</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Ad Relevance</label>
+                    <select id="qsRelevance" onchange="calcQS()">
+                        <option value="1">Below Average</option>
+                        <option value="2" selected>Average</option>
+                        <option value="3">Above Average</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" style="max-width:50%;">
+                <label>Landing Page Experience</label>
+                <select id="qsLanding" onchange="calcQS()">
+                    <option value="1">Below Average</option>
+                    <option value="2" selected>Average</option>
+                    <option value="3">Above Average</option>
+                </select>
+            </div>
+            <div id="qsResult" style="margin-top:20px;text-align:center;">
+                <div style="font-size:0.9rem;color:#94A3B8;margin-bottom:8px;">Estimated Quality Score</div>
+                <div id="qsScore" style="font-size:4rem;font-weight:800;color:#4ADE80;">6/10</div>
+                <div id="qsTip" style="color:#94A3B8;margin-top:8px;font-size:0.9rem;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     9. SERP PREVIEW (Meta Title & Desc)
+════════════════════════════════════════ -->
+<section class="section-padding" id="serp-preview" style="padding-top:0;">
+    <div class="container">
+        <div class="tool-wrapper" style="border-color:#3B82F6;">
+            <div class="tool-header">
+                <span class="tool-badge" style="color:#3B82F6;">SEO</span>
+                <h2>Meta Title & Description Previewer</h2>
+                <p>See how your page looks in Google Search results in real time.</p>
+            </div>
+            <div class="form-group full-width">
+                <label>Page URL (for display)</label>
+                <input type="text" id="serpUrl" placeholder="https://www.example.com/your-page" oninput="updateSERP()">
+            </div>
+            <div class="form-group full-width">
+                <label>Meta Title <span id="titleCount" style="color:#94A3B8;font-size:0.8rem;">(0/60)</span></label>
+                <input type="text" id="serpTitle" placeholder="Your awesome page title here" maxlength="100" oninput="updateSERP()">
+                <div class="char-bar"><div id="titleBar" class="char-bar-fill" style="width:0%;background:#10B981;"></div></div>
+            </div>
+            <div class="form-group full-width">
+                <label>Meta Description <span id="descCount" style="color:#94A3B8;font-size:0.8rem;">(0/160)</span></label>
+                <textarea id="serpDesc" rows="3" placeholder="A compelling description that makes users click..." maxlength="320" oninput="updateSERP()" style="width:100%;padding:12px;background:#151921;border:1px solid #334155;border-radius:6px;color:white;resize:vertical;font-family:inherit;"></textarea>
+                <div class="char-bar"><div id="descBar" class="char-bar-fill" style="width:0%;background:#10B981;"></div></div>
+            </div>
+            <div class="serp-preview">
+                <div class="serp-url" id="previewUrl">https://www.example.com</div>
+                <div class="serp-title" id="previewTitle">Your Page Title</div>
+                <div class="serp-desc" id="previewDesc">Your meta description will appear here. Make it compelling to increase click-through rates from search results.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     10. KEYWORD DENSITY CHECKER
+════════════════════════════════════════ -->
+<section class="section-padding" id="keyword-density" style="padding-top:0;">
+    <div class="container">
+        <div class="tool-wrapper" style="border-color:#A78BFA;">
+            <div class="tool-header">
+                <span class="tool-badge" style="color:#A78BFA;">SEO</span>
+                <h2>Keyword Density Checker</h2>
+                <p>Paste your content and see which keywords dominate your text.</p>
+            </div>
+            <textarea id="kwInput" rows="6" placeholder="Paste your article or content here..." oninput="analyzeKeywords()" style="width:100%;padding:12px;background:#151921;border:1px solid #334155;border-radius:6px;color:white;resize:vertical;font-family:inherit;"></textarea>
+            <div style="display:flex;gap:16px;margin-top:12px;color:#94A3B8;font-size:0.88rem;">
+                <span>Words: <strong id="kwWordCount" style="color:white;">0</strong></span>
+                <span>Unique: <strong id="kwUnique" style="color:white;">0</strong></span>
+            </div>
+            <div id="kwTable" style="margin-top:16px;max-height:300px;overflow-y:auto;"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     11. SUBJECT LINE CHARACTER COUNTER
+════════════════════════════════════════ -->
+<section class="section-padding" id="subject-line" style="padding-top:0;">
+    <div class="container">
+        <div class="tool-wrapper" style="border-color:#38BDF8;">
+            <div class="tool-header">
+                <span class="tool-badge" style="color:#38BDF8;">EMAIL</span>
+                <h2>Subject Line Character Counter</h2>
+                <p>Preview how your subject line looks on desktop and mobile.</p>
+            </div>
+            <div class="form-group full-width">
+                <label>Email Subject Line</label>
+                <input type="text" id="subjectInput" placeholder="🔥 Last chance: 50% off ends tonight!" oninput="analyzeSubject()">
+            </div>
+            <div id="subjectResults" style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <div style="background:#151921;border:1px solid #334155;border-radius:10px;padding:20px;">
+                    <div style="color:#94A3B8;font-size:0.78rem;margin-bottom:10px;letter-spacing:1px;">DESKTOP (60 chars)</div>
+                    <div id="desktopPreview" style="color:white;font-size:0.95rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:380px;">Your subject line here</div>
+                    <div id="desktopStatus" style="margin-top:8px;font-size:0.8rem;color:#10B981;"></div>
+                </div>
+                <div style="background:#151921;border:1px solid #334155;border-radius:10px;padding:20px;">
+                    <div style="color:#94A3B8;font-size:0.78rem;margin-bottom:10px;letter-spacing:1px;">MOBILE (30 chars)</div>
+                    <div id="mobilePreview" style="color:white;font-size:0.95rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:180px;">Your subject line here</div>
+                    <div id="mobileStatus" style="margin-top:8px;font-size:0.8rem;color:#10B981;"></div>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;" id="subjectStats"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     12. SPAM SCORE CHECKER
+════════════════════════════════════════ -->
+<section class="section-padding" id="spam-checker" style="padding-top:0;">
+    <div class="container">
+        <div class="tool-wrapper" style="border-color:#EF4444;">
+            <div class="tool-header">
+                <span class="tool-badge" style="color:#EF4444;">EMAIL</span>
+                <h2>Spam Score Checker</h2>
+                <p>Detect risky words in your subject line before you hit send.</p>
+            </div>
+            <div class="form-group full-width">
+                <label>Subject Line</label>
+                <input type="text" id="spamInput" placeholder="FREE money — Act NOW! 100% guaranteed!!!" oninput="checkSpam()">
+            </div>
+            <div id="spamResult" style="margin-top:20px;text-align:center;">
+                <div id="spamCircle" class="score-circle" style="border-color:#10B981;color:#10B981;">0</div>
+                <div id="spamLabel" style="color:#94A3B8;font-size:0.9rem;">Type your subject line above</div>
+                <div id="spamFlags" style="margin-top:16px;text-align:left;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     13. CSV → JSON CONVERTER
+════════════════════════════════════════ -->
+<section class="section-padding" id="csv-json" style="padding-top:0;">
+    <div class="container">
+        <div class="tool-wrapper" style="border-color:#FBBF24;">
+            <div class="tool-header">
+                <span class="tool-badge" style="color:#FBBF24;">UTILITY</span>
+                <h2>CSV → JSON Converter</h2>
+                <p>Convert CSV data to clean JSON instantly — great for data layers and APIs.</p>
+            </div>
+            <div class="split-pane">
+                <div>
+                    <label style="color:#94A3B8;font-size:0.85rem;display:block;margin-bottom:6px;">CSV Input</label>
+                    <textarea id="csvInput" placeholder="id,name,price&#10;1,Blue T-Shirt,29.90&#10;2,Red Hoodie,49.90" oninput="convertCSV()"></textarea>
+                </div>
+                <div style="position:relative;">
+                    <label style="color:#94A3B8;font-size:0.85rem;display:block;margin-bottom:6px;">JSON Output</label>
+                    <textarea id="jsonOutput" readonly placeholder="JSON will appear here..."></textarea>
+                    <button class="copy-btn" onclick="copyEl('jsonOutput')" style="position:absolute;top:28px;right:8px;"><i class="fas fa-copy"></i></button>
+                </div>
+            </div>
+            <div id="csvStats" style="margin-top:12px;color:#94A3B8;font-size:0.85rem;"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     14. COLOR CONTRAST CHECKER
+════════════════════════════════════════ -->
+<section class="section-padding" id="contrast" style="padding-top:0;">
+    <div class="container">
+        <div class="tool-wrapper" style="border-color:#C084FC;">
+            <div class="tool-header">
+                <span class="tool-badge" style="color:#C084FC;">ACCESSIBILITY</span>
+                <h2>Color Contrast Checker</h2>
+                <p>Ensure your CTAs and ad creatives meet WCAG accessibility standards.</p>
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Text Color</label>
+                    <div style="display:flex;gap:10px;align-items:center;">
+                        <input type="color" id="textColor" value="#ffffff" oninput="checkContrast()" style="width:50px;height:40px;border:none;background:none;cursor:pointer;">
+                        <input type="text" id="textColorHex" value="#ffffff" placeholder="#ffffff" oninput="syncColor('text')" style="flex:1;">
                     </div>
-                    <div style="background: #151921; padding: 20px; border-radius: 8px; border: 1px solid #334155;">
-                        <h3 style="color: #94A3B8; font-size: 1rem; margin-bottom: 15px;">Version B (Variation)</h3>
-                        <div class="form-group" style="margin-bottom: 15px;"><label>Visitors</label><input type="number" id="visitorsB" placeholder="e.g. 1000"></div>
-                        <div class="form-group"><label>Conversions</label><input type="number" id="conversionsB" placeholder="e.g. 65"></div>
+                </div>
+                <div class="form-group">
+                    <label>Background Color</label>
+                    <div style="display:flex;gap:10px;align-items:center;">
+                        <input type="color" id="bgColor" value="#3B82F6" oninput="checkContrast()" style="width:50px;height:40px;border:none;background:none;cursor:pointer;">
+                        <input type="text" id="bgColorHex" value="#3B82F6" placeholder="#3b82f6" oninput="syncColor('bg')" style="flex:1;">
                     </div>
                 </div>
-                <button class="btn btn-primary" onclick="calculateSignificance()" style="width: 100%; margin-top: 20px; background: #10B981;">Calculate & Visualize</button>
-                <div class="result-box" id="abResultBox" style="display:none; text-align: center; border-color: #10B981;">
-                    <h3 id="abResultTitle" style="color: #fff; margin-bottom: 10px;"></h3>
-                    <p id="abResultDesc" style="color: #94A3B8; margin-bottom: 20px;"></p>
-                    <div style="max-width: 500px; margin: 0 auto;"><canvas id="abChart"></canvas></div>
-                </div>
             </div>
-        </div>
-    </section>
-
-    <section class="section-padding" style="padding-top: 0;">
-        <div class="container">
-            <div class="comments-section">
-                <h3 style="color: white; margin-bottom: 20px;">Discussion</h3>
-                <p style="color: #94A3B8; margin-bottom: 20px; font-size: 0.9rem;">Questions about these tools? Ask below.</p>
-                <form id="commentForm" class="comment-form">
-                    <input type="text" id="commentName" placeholder="Your Name" required>
-                    <textarea id="commentBody" rows="3" placeholder="Write your comment..." required></textarea>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Post Comment</button>
-                </form>
-                <div id="commentsContainer" class="comment-list"></div>
+            <div id="contrastPreview" style="margin-top:20px;border-radius:10px;padding:28px;text-align:center;background:#3B82F6;">
+                <div id="contrastSample" style="font-size:1.4rem;font-weight:700;color:#ffffff;">The quick brown fox jumps over the lazy dog</div>
+                <div id="contrastSmall" style="font-size:0.9rem;color:#ffffff;margin-top:6px;">Small text sample — body copy and captions</div>
             </div>
+            <div id="contrastResults" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px;"></div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <p style="margin-bottom: 10px;">&copy; 2025 John. Built with custom code.</p>
-            <div style="font-size: 0.85rem;">
-                <a href="legal.html" style="color: var(--text-muted); text-decoration: none; margin: 0 10px;">Privacy & Terms</a>
-            </div>
+<!-- ── Comments ── -->
+<section class="section-padding" style="padding-top:0;">
+    <div class="container">
+        <div class="comments-section">
+            <h3 style="color:white;margin-bottom:20px;">Discussion</h3>
+            <p style="color:#94A3B8;margin-bottom:20px;font-size:0.9rem;">Questions about these tools? Ask below.</p>
+            <form id="commentForm" class="comment-form">
+                <input type="text" id="commentName" placeholder="Your Name" required>
+                <textarea id="commentBody" rows="3" placeholder="Write your comment..." required></textarea>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Post Comment</button>
+            </form>
+            <div id="commentsContainer" class="comment-list"></div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        // UTM
-        const utmInputs = document.querySelectorAll('#utmForm input');
-        const display = document.getElementById('finalUrl');
-        function generateURL() {
-            const urlVal = document.getElementById('baseUrl').value.trim();
-            const source = document.getElementById('utmSource').value.trim();
-            const medium = document.getElementById('utmMedium').value.trim();
-            const campaign = document.getElementById('utmCampaign').value.trim();
-            const id = document.getElementById('utmId').value.trim();
-            const term = document.getElementById('utmTerm').value.trim();
-            const content = document.getElementById('utmContent').value.trim();
-            if (!urlVal) { display.textContent = 'Enter a valid Website URL...'; return; }
-            try {
-                let finalBase = urlVal; if (!/^https?:\/\//i.test(finalBase)) { finalBase = 'https://' + finalBase; }
-                const urlObj = new URL(finalBase);
-                if (source) urlObj.searchParams.set('utm_source', source);
-                if (medium) urlObj.searchParams.set('utm_medium', medium);
-                if (campaign) urlObj.searchParams.set('utm_campaign', campaign);
-                if (id) urlObj.searchParams.set('utm_id', id);
-                if (term) urlObj.searchParams.set('utm_term', term);
-                if (content) urlObj.searchParams.set('utm_content', content);
-                display.style.color = '#10B981'; display.textContent = urlObj.toString();
-            } catch (e) { display.textContent = 'Invalid URL'; }
+<footer>
+    <div class="container">
+        <p style="margin-bottom:10px;">&copy; 2025 John. Built with custom code.</p>
+        <div style="font-size:0.85rem;">
+            <a href="legal.html" style="color:var(--text-muted);text-decoration:none;margin:0 10px;">Privacy & Terms</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════ */
+function copyEl(id) {
+    const el = document.getElementById(id);
+    navigator.clipboard.writeText(el.textContent || el.value).then(() => alert('Copied!'));
+}
+
+function metricCard(label, value, color) {
+    return `<div style="background:#151921;border:1px solid #334155;border-radius:8px;padding:16px;text-align:center;">
+        <div style="color:#94A3B8;font-size:0.75rem;letter-spacing:1px;margin-bottom:6px;">${label}</div>
+        <div style="font-size:1.5rem;font-weight:800;color:${color};">${value}</div>
+    </div>`;
+}
+
+/* ═══════════════════════════════════════
+   1. UTM BUILDER
+═══════════════════════════════════════ */
+const utmInputs = document.querySelectorAll('#utmForm input');
+const display = document.getElementById('finalUrl');
+function generateURL() {
+    const urlVal = document.getElementById('baseUrl').value.trim();
+    const source = document.getElementById('utmSource').value.trim();
+    const medium = document.getElementById('utmMedium').value.trim();
+    const campaign = document.getElementById('utmCampaign').value.trim();
+    const id = document.getElementById('utmId').value.trim();
+    const term = document.getElementById('utmTerm').value.trim();
+    const content = document.getElementById('utmContent').value.trim();
+    if (!urlVal) { display.textContent = 'Enter a valid Website URL...'; return; }
+    try {
+        let base = urlVal;
+        if (!/^https?:\/\//i.test(base)) base = 'https://' + base;
+        const u = new URL(base);
+        if (source) u.searchParams.set('utm_source', source);
+        if (medium) u.searchParams.set('utm_medium', medium);
+        if (campaign) u.searchParams.set('utm_campaign', campaign);
+        if (id) u.searchParams.set('utm_id', id);
+        if (term) u.searchParams.set('utm_term', term);
+        if (content) u.searchParams.set('utm_content', content);
+        display.style.color = '#10B981';
+        display.textContent = u.toString();
+    } catch(e) { display.textContent = 'Invalid URL'; }
+}
+utmInputs.forEach(i => i.addEventListener('input', generateURL));
+
+/* ═══════════════════════════════════════
+   2. UTM DECODER
+═══════════════════════════════════════ */
+function decodeUTM() {
+    const val = document.getElementById('decodeInput').value.trim();
+    const result = document.getElementById('decodeResult');
+    const body = document.getElementById('decodeBody');
+    if (!val) { result.style.display = 'none'; return; }
+    try {
+        let u = val; if (!/^https?:\/\//i.test(u)) u = 'https://' + u;
+        const url = new URL(u);
+        const params = ['utm_source','utm_medium','utm_campaign','utm_id','utm_term','utm_content'];
+        const rows = params.map(p => {
+            const v = url.searchParams.get(p);
+            const color = v ? '#10B981' : '#4B5563';
+            const display = v || '—';
+            return `<tr><td style="padding:8px 10px;border-bottom:1px solid #1E293B;color:#94A3B8;">${p}</td><td style="padding:8px 10px;border-bottom:1px solid #1E293B;color:${color};font-weight:${v?'600':'400'};">${display}</td></tr>`;
+        }).join('');
+        body.innerHTML = rows;
+        result.style.display = 'block';
+    } catch(e) { result.style.display = 'none'; }
+}
+
+/* ═══════════════════════════════════════
+   3. GTM DATA LAYER
+═══════════════════════════════════════ */
+const gtmInputs = document.querySelectorAll('#eventName,#currency,#transactionId,#totalValue,#itemId,#itemName');
+const codeDisplay = document.getElementById('codeOutput');
+function generateDataLayer() {
+    const eventName = document.getElementById('eventName').value;
+    const value = document.getElementById('totalValue').value || 0;
+    const dlObject = {
+        event: eventName,
+        ecommerce: {
+            currency: document.getElementById('currency').value || 'EUR',
+            value: parseFloat(value),
+            transaction_id: document.getElementById('transactionId').value || 'T_12345',
+            items: [{ item_id: document.getElementById('itemId').value || 'SKU_123', item_name: document.getElementById('itemName').value || 'Product', price: parseFloat(value) }]
         }
-        utmInputs.forEach(input => input.addEventListener('input', generateURL));
+    };
+    if (eventName !== 'purchase') delete dlObject.ecommerce.transaction_id;
+    codeDisplay.textContent = `window.dataLayer.push(${JSON.stringify(dlObject, null, 4)});`;
+}
+gtmInputs.forEach(i => i.addEventListener('input', generateDataLayer));
+window.addEventListener('load', generateDataLayer);
 
-        // GTM
-        const gtmInputs = document.querySelectorAll('#eventName, #currency, #transactionId, #totalValue, #itemId, #itemName');
-        const codeDisplay = document.getElementById('codeOutput');
-        function generateDataLayer() {
-            const eventName = document.getElementById('eventName').value;
-            const value = document.getElementById('totalValue').value || 0;
-            const dlObject = {
-                event: eventName,
-                ecommerce: {
-                    currency: document.getElementById('currency').value || 'EUR',
-                    value: parseFloat(value),
-                    transaction_id: document.getElementById('transactionId').value || 'T_12345',
-                    items: [{ item_id: document.getElementById('itemId').value || 'SKU_123', item_name: document.getElementById('itemName').value || 'Product', price: parseFloat(value) }]
-                }
-            };
-            if(eventName !== 'purchase') { delete dlObject.ecommerce.transaction_id; }
-            codeDisplay.textContent = `window.dataLayer.push(${JSON.stringify(dlObject, null, 4)});`;
-        }
-        gtmInputs.forEach(input => input.addEventListener('input', generateDataLayer));
-        window.addEventListener('load', generateDataLayer);
+/* ═══════════════════════════════════════
+   4. GA4 EVENT VALIDATOR
+═══════════════════════════════════════ */
+function validateGA4() {
+    const eventName = document.getElementById('ga4EventName').value.trim();
+    const paramName = document.getElementById('ga4ParamName').value.trim();
+    const results = document.getElementById('ga4Results');
 
-        // AB TEST
-        let myChart = null;
-        function calculateSignificance() {
-            const visA = parseFloat(document.getElementById('visitorsA').value);
-            const convA = parseFloat(document.getElementById('conversionsA').value);
-            const visB = parseFloat(document.getElementById('visitorsB').value);
-            const convB = parseFloat(document.getElementById('conversionsB').value);
-            if(!visA || !convA || !visB || !convB) { alert("Please fill in all fields"); return; }
-            const rateA = (convA / visA) * 100;
-            const rateB = (convB / visB) * 100;
-            const p1 = convA / visA;
-            const p2 = convB / visB;
-            const se = Math.sqrt(((p1 * (1 - p1)) / visA) + ((p2 * (1 - p2)) / visB));
-            const zScore = (p2 - p1) / se;
-            let confidence = 0;
-            const z = Math.abs(zScore);
-            if(z >= 2.58) confidence = 99; else if(z >= 1.96) confidence = 95; else if(z >= 1.65) confidence = 90; else confidence = Math.round((1 - (1/(1+z)))*100);
-            const resultBox = document.getElementById('abResultBox');
-            const resultTitle = document.getElementById('abResultTitle');
-            const resultDesc = document.getElementById('abResultDesc');
-            resultBox.style.display = 'block';
-            if (confidence >= 90) {
-                const winner = rateB > rateA ? "Variation B" : "Version A";
-                const lift = ((rateB - rateA) / rateA * 100).toFixed(2);
-                resultTitle.textContent = `Significant Result! (${confidence}% Confidence)`;
-                resultTitle.style.color = "#10B981";
-                resultDesc.innerHTML = `Winner: <strong>${winner}</strong> with a ${lift}% lift.<br> CR A: ${rateA.toFixed(2)}% vs CR B: ${rateB.toFixed(2)}%`;
-            } else {
-                resultTitle.textContent = "Test is Inconclusive";
-                resultTitle.style.color = "#F59E0B";
-                resultDesc.innerHTML = `Not enough difference yet.<br> CR A: ${rateA.toFixed(2)}% vs CR B: ${rateB.toFixed(2)}%`;
-            }
-            const ctx = document.getElementById('abChart').getContext('2d');
-            if (myChart) { myChart.destroy(); }
-            myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Version A', 'Version B'],
-                    datasets: [{
-                        label: 'Conversion Rate (%)',
-                        data: [rateA.toFixed(2), rateB.toFixed(2)],
-                        backgroundColor: ['rgba(148, 163, 184, 0.5)', rateB > rateA ? 'rgba(16, 185, 129, 0.7)' : 'rgba(239, 68, 68, 0.7)'],
-                        borderColor: ['rgba(148, 163, 184, 1)', rateB > rateA ? 'rgba(16, 185, 129, 1)' : 'rgba(239, 68, 68, 1)'],
-                        borderWidth: 1
-                    }]
-                },
-                options: { responsive: true, scales: { y: { beginAtZero: true, grid: { color: '#334155' } }, x: { grid: { display: false } } }, plugins: { legend: { display: false } } }
+    function checkField(label, val) {
+        if (!val) return `<div style="background:#151921;border:1px solid #334155;border-radius:8px;padding:16px;"><div style="color:#94A3B8;font-size:0.8rem;margin-bottom:8px;">${label}</div><div style="color:#4B5563;">—</div></div>`;
+        const checks = [];
+        const noSpace = !/\s/.test(val);
+        const validStart = /^[a-zA-Z_]/.test(val);
+        const validChars = /^[a-zA-Z0-9_]+$/.test(val);
+        const maxLen = val.length <= 40;
+        const notReserved = !['event','class','default'].includes(val);
+        checks.push({ label: 'No spaces', ok: noSpace });
+        checks.push({ label: 'Starts with letter or _', ok: validStart });
+        checks.push({ label: 'Only letters, numbers, _', ok: validChars });
+        checks.push({ label: `Max 40 chars (${val.length})`, ok: maxLen });
+        checks.push({ label: 'Not a reserved name', ok: notReserved });
+        const allOk = checks.every(c => c.ok);
+        const checkHtml = checks.map(c => `<div style="color:${c.ok?'#10B981':'#EF4444'};font-size:0.82rem;margin-bottom:4px;">${c.ok?'✓':'✗'} ${c.label}</div>`).join('');
+        return `<div style="background:#151921;border:1px solid ${allOk?'#10B981':'#EF4444'};border-radius:8px;padding:16px;">
+            <div style="color:#94A3B8;font-size:0.8rem;margin-bottom:8px;">${label}: <span style="color:${allOk?'#10B981':'#EF4444'};font-weight:600;">${allOk?'Valid ✓':'Invalid ✗'}</span></div>
+            ${checkHtml}
+        </div>`;
+    }
+
+    results.innerHTML = checkField('Event Name', eventName) + checkField('Parameter Name', paramName);
+}
+
+/* ═══════════════════════════════════════
+   5. A/B TEST
+═══════════════════════════════════════ */
+let myChart = null;
+function calculateSignificance() {
+    const visA = parseFloat(document.getElementById('visitorsA').value);
+    const convA = parseFloat(document.getElementById('conversionsA').value);
+    const visB = parseFloat(document.getElementById('visitorsB').value);
+    const convB = parseFloat(document.getElementById('conversionsB').value);
+    if (!visA||!convA||!visB||!convB) { alert('Please fill in all fields'); return; }
+    const rateA = (convA/visA)*100, rateB = (convB/visB)*100;
+    const p1=convA/visA, p2=convB/visB;
+    const se = Math.sqrt(((p1*(1-p1))/visA)+((p2*(1-p2))/visB));
+    const zScore = (p2-p1)/se;
+    const z = Math.abs(zScore);
+    let confidence = z>=2.58?99:z>=1.96?95:z>=1.65?90:Math.round((1-(1/(1+z)))*100);
+    const resultBox = document.getElementById('abResultBox');
+    const resultTitle = document.getElementById('abResultTitle');
+    const resultDesc = document.getElementById('abResultDesc');
+    resultBox.style.display = 'block';
+    if (confidence >= 90) {
+        const winner = rateB > rateA ? 'Variation B' : 'Version A';
+        const lift = ((rateB - rateA) / rateA * 100).toFixed(2);
+        resultTitle.textContent = `Significant Result! (${confidence}% Confidence)`;
+        resultTitle.style.color = '#10B981';
+        resultDesc.innerHTML = `Winner: <strong>${winner}</strong> with a ${lift}% lift.<br>CR A: ${rateA.toFixed(2)}% vs CR B: ${rateB.toFixed(2)}%`;
+    } else {
+        resultTitle.textContent = 'Test is Inconclusive';
+        resultTitle.style.color = '#F59E0B';
+        resultDesc.innerHTML = `Not enough difference yet.<br>CR A: ${rateA.toFixed(2)}% vs CR B: ${rateB.toFixed(2)}%`;
+    }
+    const ctx = document.getElementById('abChart').getContext('2d');
+    if (myChart) myChart.destroy();
+    myChart = new Chart(ctx, {
+        type: 'bar',
+        data: { labels: ['Version A','Version B'], datasets: [{ label: 'Conversion Rate (%)', data: [rateA.toFixed(2),rateB.toFixed(2)], backgroundColor: ['rgba(148,163,184,0.5)',rateB>rateA?'rgba(16,185,129,0.7)':'rgba(239,68,68,0.7)'], borderColor: ['rgba(148,163,184,1)',rateB>rateA?'rgba(16,185,129,1)':'rgba(239,68,68,1)'], borderWidth: 1 }] },
+        options: { responsive: true, scales: { y: { beginAtZero: true, grid: { color: '#334155' } }, x: { grid: { display: false } } }, plugins: { legend: { display: false } } }
+    });
+}
+
+/* ═══════════════════════════════════════
+   6. ROAS / ROI
+═══════════════════════════════════════ */
+function calcROAS() {
+    const spend = parseFloat(document.getElementById('adSpend').value) || 0;
+    const revenue = parseFloat(document.getElementById('adRevenue').value) || 0;
+    const cogs = parseFloat(document.getElementById('adCOGS').value) || 0;
+    const gross = revenue - cogs;
+    document.getElementById('adGrossProfit').value = gross.toFixed(2);
+    const roas = spend > 0 ? (revenue / spend).toFixed(2) : '—';
+    const roi = spend > 0 ? (((gross - spend) / spend) * 100).toFixed(1) : '—';
+    const profit = (gross - spend).toFixed(2);
+    const roasColor = parseFloat(roas) >= 4 ? '#10B981' : parseFloat(roas) >= 2 ? '#F59E0B' : '#EF4444';
+    const roiColor = parseFloat(roi) >= 0 ? '#10B981' : '#EF4444';
+    document.getElementById('roasResult').innerHTML =
+        metricCard('ROAS', roas + 'x', roasColor) +
+        metricCard('ROI', roi + '%', roiColor) +
+        metricCard('Net Profit', '€' + profit, parseFloat(profit) >= 0 ? '#10B981' : '#EF4444');
+}
+
+/* ═══════════════════════════════════════
+   7. CPM / CPC / CPA CONVERTER
+═══════════════════════════════════════ */
+function calcMetrics() {
+    const imp = parseFloat(document.getElementById('mImpressions').value) || 0;
+    const clicks = parseFloat(document.getElementById('mClicks').value) || 0;
+    const conv = parseFloat(document.getElementById('mConversions').value) || 0;
+    const spend = parseFloat(document.getElementById('mSpend').value) || 0;
+    const cpm = imp > 0 && spend > 0 ? '€' + ((spend / imp) * 1000).toFixed(2) : '—';
+    const cpc = clicks > 0 && spend > 0 ? '€' + (spend / clicks).toFixed(2) : '—';
+    const cpa = conv > 0 && spend > 0 ? '€' + (spend / conv).toFixed(2) : '—';
+    const ctr = imp > 0 && clicks > 0 ? ((clicks / imp) * 100).toFixed(2) + '%' : '—';
+    const cvr = clicks > 0 && conv > 0 ? ((conv / clicks) * 100).toFixed(2) + '%' : '—';
+    const rpc = clicks > 0 && spend > 0 ? '€' + (spend / clicks).toFixed(4) : '—';
+    document.getElementById('metricsResult').innerHTML =
+        metricCard('CPM', cpm, '#EC4899') +
+        metricCard('CPC', cpc, '#EC4899') +
+        metricCard('CPA', cpa, '#EC4899') +
+        metricCard('CTR', ctr, '#94A3B8') +
+        metricCard('CVR', cvr, '#94A3B8') +
+        metricCard('Spend/Click', rpc, '#94A3B8');
+    document.getElementById('metricsResult').style.gridTemplateColumns = 'repeat(3,1fr)';
+}
+
+/* ═══════════════════════════════════════
+   8. QUALITY SCORE
+═══════════════════════════════════════ */
+function calcQS() {
+    const ctr = parseInt(document.getElementById('qsCTR').value);
+    const rel = parseInt(document.getElementById('qsRelevance').value);
+    const lp = parseInt(document.getElementById('qsLanding').value);
+    const score = Math.round(((ctr * 0.4) + (rel * 0.3) + (lp * 0.3)) / 3 * 10);
+    const clamped = Math.max(1, Math.min(10, score));
+    const color = clamped >= 7 ? '#4ADE80' : clamped >= 4 ? '#F59E0B' : '#EF4444';
+    document.getElementById('qsScore').textContent = clamped + '/10';
+    document.getElementById('qsScore').style.color = color;
+    const tips = clamped <= 3 ? 'Focus on ad relevance and landing page quality. Review your keywords.' :
+                 clamped <= 6 ? 'Decent score. Improve CTR with stronger CTAs and better ad copy.' :
+                 'Great score! You\'re likely paying less per click than competitors.';
+    document.getElementById('qsTip').textContent = tips;
+}
+calcQS();
+
+/* ═══════════════════════════════════════
+   9. SERP PREVIEW
+═══════════════════════════════════════ */
+function updateSERP() {
+    const title = document.getElementById('serpTitle').value || 'Your Page Title';
+    const desc = document.getElementById('serpDesc').value || 'Your meta description will appear here.';
+    const url = document.getElementById('serpUrl').value || 'https://www.example.com';
+    document.getElementById('previewTitle').textContent = title;
+    document.getElementById('previewDesc').textContent = desc.substring(0, 160) + (desc.length > 160 ? '...' : '');
+    document.getElementById('previewUrl').textContent = url;
+    const tLen = title.length, dLen = desc.length;
+    document.getElementById('titleCount').textContent = `(${tLen}/60)`;
+    document.getElementById('descCount').textContent = `(${dLen}/160)`;
+    const tPct = Math.min((tLen / 60) * 100, 100);
+    const dPct = Math.min((dLen / 160) * 100, 100);
+    const titleBar = document.getElementById('titleBar');
+    titleBar.style.width = tPct + '%';
+    titleBar.style.background = tLen > 60 ? '#EF4444' : tLen > 50 ? '#F59E0B' : '#10B981';
+    document.getElementById('previewTitle').className = 'serp-title' + (tLen > 60 ? ' over' : '');
+    const descBar = document.getElementById('descBar');
+    descBar.style.width = dPct + '%';
+    descBar.style.background = dLen > 160 ? '#EF4444' : dLen > 140 ? '#F59E0B' : '#10B981';
+}
+
+/* ═══════════════════════════════════════
+   10. KEYWORD DENSITY
+═══════════════════════════════════════ */
+function analyzeKeywords() {
+    const text = document.getElementById('kwInput').value;
+    const stopWords = new Set(['the','a','an','and','or','but','in','on','at','to','for','of','with','by','from','is','are','was','were','be','been','have','has','had','it','its','this','that','i','you','we','they','he','she','not','as','if','so','do','did','will','can','could','would','should','may','might','shall','my','your','our','their','his','her','which','who','what','how','when','where','why','all','one','two','more','also','just','than','then','about','after','before']);
+    const words = text.toLowerCase().replace(/[^\w\s]/g, '').split(/\s+/).filter(w => w.length > 2 && !stopWords.has(w));
+    const total = text.split(/\s+/).filter(Boolean).length;
+    const freq = {};
+    words.forEach(w => freq[w] = (freq[w] || 0) + 1);
+    const sorted = Object.entries(freq).sort((a,b) => b[1]-a[1]).slice(0, 15);
+    document.getElementById('kwWordCount').textContent = total;
+    document.getElementById('kwUnique').textContent = Object.keys(freq).length;
+    if (!sorted.length) { document.getElementById('kwTable').innerHTML = ''; return; }
+    const maxCount = sorted[0][1];
+    const rows = sorted.map(([w, c]) => {
+        const pct = ((c / total) * 100).toFixed(1);
+        const barW = Math.round((c / maxCount) * 100);
+        return `<tr>
+            <td style="padding:7px 10px;color:#cbd5e1;font-size:0.9rem;border-bottom:1px solid #1E293B;">${w}</td>
+            <td style="padding:7px 10px;color:#94A3B8;font-size:0.88rem;border-bottom:1px solid #1E293B;">${c}×</td>
+            <td style="padding:7px 10px;color:#94A3B8;font-size:0.88rem;border-bottom:1px solid #1E293B;">${pct}%</td>
+            <td style="padding:7px 10px;border-bottom:1px solid #1E293B;width:35%;">
+                <div class="kw-bar"><div class="kw-bar-fill" style="width:${barW}%;"></div></div>
+            </td>
+        </tr>`;
+    }).join('');
+    document.getElementById('kwTable').innerHTML = `<table class="kw-table"><thead><tr><th>Keyword</th><th>Count</th><th>Density</th><th></th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+/* ═══════════════════════════════════════
+   11. SUBJECT LINE
+═══════════════════════════════════════ */
+function analyzeSubject() {
+    const val = document.getElementById('subjectInput').value;
+    const len = val.length;
+    document.getElementById('desktopPreview').textContent = val || 'Your subject line here';
+    document.getElementById('mobilePreview').textContent = val || 'Your subject line here';
+    const dStatus = len > 60 ? `⚠ Truncated on desktop (${len - 60} chars over)` : len > 50 ? `✓ Near limit (${60 - len} chars left)` : `✓ Good (${60 - len} chars remaining)`;
+    const mStatus = len > 30 ? `⚠ Truncated on mobile (${len - 30} over)` : `✓ Good (${30 - len} chars remaining)`;
+    document.getElementById('desktopStatus').textContent = dStatus;
+    document.getElementById('desktopStatus').style.color = len > 60 ? '#EF4444' : '#10B981';
+    document.getElementById('mobileStatus').textContent = mStatus;
+    document.getElementById('mobileStatus').style.color = len > 30 ? '#F59E0B' : '#10B981';
+    const hasEmoji = /\p{Emoji}/u.test(val);
+    const wordCount = val.trim().split(/\s+/).filter(Boolean).length;
+    const hasNumber = /\d/.test(val);
+    document.getElementById('subjectStats').innerHTML =
+        metricCard('Characters', len, len > 60 ? '#EF4444' : '#10B981') +
+        metricCard('Words', wordCount, '#94A3B8') +
+        metricCard('Emoji', hasEmoji ? 'Yes ✓' : 'None', hasEmoji ? '#F59E0B' : '#94A3B8') +
+        metricCard('Has Number', hasNumber ? 'Yes' : 'No', hasNumber ? '#10B981' : '#94A3B8');
+}
+
+/* ═══════════════════════════════════════
+   12. SPAM CHECKER
+═══════════════════════════════════════ */
+const spamWords = ['free','money','cash','guarantee','guaranteed','100%','act now','now','urgent','winner','won','prize','limited time','click here','buy now','order now','sale','discount','earn','income','profit','make money','fast','instant','no cost','risk free','dear friend','congratulations','bonus','offer','cheap','affordable','subscribe','unsubscribe','cancel','credit','loan','debt','investment','opportunity','special promotion','final notice','!!!','???','$$$','€€€','allcaps'];
+function checkSpam() {
+    const val = document.getElementById('spamInput').value.toLowerCase();
+    const found = spamWords.filter(w => val.includes(w.toLowerCase()));
+    const score = Math.min(found.length * 10, 100);
+    const circle = document.getElementById('spamCircle');
+    circle.textContent = score;
+    const color = score === 0 ? '#10B981' : score <= 20 ? '#F59E0B' : '#EF4444';
+    circle.style.borderColor = color;
+    circle.style.color = color;
+    const label = score === 0 ? 'Looks clean! No spam triggers found.' : score <= 20 ? 'Low risk — one or two common words.' : score <= 50 ? 'Medium risk — consider rewording.' : 'High risk — likely to hit spam filters!';
+    document.getElementById('spamLabel').textContent = label;
+    document.getElementById('spamLabel').style.color = color;
+    document.getElementById('spamFlags').innerHTML = found.length
+        ? '<div style="color:#94A3B8;font-size:0.82rem;margin-bottom:8px;">Flagged words:</div>' + found.map(w => `<span class="spam-flag">${w}</span>`).join('')
+        : '';
+}
+
+/* ═══════════════════════════════════════
+   13. CSV → JSON
+═══════════════════════════════════════ */
+function convertCSV() {
+    const raw = document.getElementById('csvInput').value.trim();
+    const out = document.getElementById('jsonOutput');
+    const stats = document.getElementById('csvStats');
+    if (!raw) { out.value = ''; stats.textContent = ''; return; }
+    try {
+        const lines = raw.split('\n').map(l => l.trim()).filter(Boolean);
+        if (lines.length < 2) { out.value = '// Need at least 1 header + 1 data row'; return; }
+        const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g,''));
+        const rows = lines.slice(1).map(line => {
+            const vals = line.split(',').map(v => v.trim().replace(/^"|"$/g,''));
+            const obj = {};
+            headers.forEach((h, i) => {
+                const v = vals[i] !== undefined ? vals[i] : '';
+                obj[h] = isNaN(v) || v === '' ? v : Number(v);
             });
-        }
-
-        function copyToClipboard(elementId) {
-            const textToCopy = document.getElementById(elementId).textContent;
-            navigator.clipboard.writeText(textToCopy).then(() => { alert("Copied!"); });
-        }
-
-        // COMMENTS
-        const commentForm = document.getElementById('commentForm');
-        const commentsContainer = document.getElementById('commentsContainer');
-        const PAGE_ID = 'marketing_tools_comments';
-
-        window.addEventListener('load', () => {
-            const storedComments = JSON.parse(localStorage.getItem(PAGE_ID)) || [];
-            storedComments.forEach(comment => addCommentToDOM(comment));
+            return obj;
         });
+        out.value = JSON.stringify(rows, null, 2);
+        stats.textContent = `✓ ${rows.length} rows · ${headers.length} columns parsed successfully`;
+    } catch(e) { out.value = '// Error parsing CSV'; }
+}
 
-        commentForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('commentName').value;
-            const body = document.getElementById('commentBody').value;
-            const date = new Date().toLocaleDateString();
-            const commentObj = { name, body, date };
-            const storedComments = JSON.parse(localStorage.getItem(PAGE_ID)) || [];
-            storedComments.unshift(commentObj);
-            localStorage.setItem(PAGE_ID, JSON.stringify(storedComments));
-            addCommentToDOM(commentObj);
-            commentForm.reset();
-        });
+/* ═══════════════════════════════════════
+   14. COLOR CONTRAST
+═══════════════════════════════════════ */
+function hexToRgb(hex) {
+    hex = hex.replace('#','');
+    if (hex.length === 3) hex = hex.split('').map(c=>c+c).join('');
+    const n = parseInt(hex, 16);
+    return [(n>>16)&255,(n>>8)&255,n&255];
+}
+function luminance([r,g,b]) {
+    return [r,g,b].map(c => { c/=255; return c<=0.03928 ? c/12.92 : Math.pow((c+0.055)/1.055,2.4); }).reduce((acc,c,i)=>acc+c*[0.2126,0.7152,0.0722][i],0);
+}
+function contrastRatio(h1,h2) {
+    const l1=luminance(hexToRgb(h1)),l2=luminance(hexToRgb(h2));
+    return ((Math.max(l1,l2)+0.05)/(Math.min(l1,l2)+0.05)).toFixed(2);
+}
+function syncColor(type) {
+    const hexEl = document.getElementById(type==='text'?'textColorHex':'bgColorHex');
+    const pickerEl = document.getElementById(type==='text'?'textColor':'bgColor');
+    const v = hexEl.value.trim();
+    if (/^#[0-9A-Fa-f]{6}$/.test(v)) { pickerEl.value = v; checkContrast(); }
+}
+function checkContrast() {
+    const tc = document.getElementById('textColor').value;
+    const bc = document.getElementById('bgColor').value;
+    document.getElementById('textColorHex').value = tc;
+    document.getElementById('bgColorHex').value = bc;
+    const preview = document.getElementById('contrastPreview');
+    const sample = document.getElementById('contrastSample');
+    const small = document.getElementById('contrastSmall');
+    preview.style.background = bc;
+    sample.style.color = tc;
+    small.style.color = tc;
+    const ratio = contrastRatio(tc, bc);
+    const aa_large = ratio >= 3, aa_normal = ratio >= 4.5, aaa_large = ratio >= 4.5, aaa_normal = ratio >= 7;
+    function badge(pass, label) {
+        const c = pass ? '#10B981' : '#EF4444';
+        return `<div style="background:#151921;border:1px solid ${c};border-radius:8px;padding:12px;text-align:center;">
+            <div style="font-size:1.2rem;font-weight:800;color:${c};">${pass?'Pass':'Fail'}</div>
+            <div style="font-size:0.75rem;color:#94A3B8;margin-top:4px;">${label}</div>
+        </div>`;
+    }
+    document.getElementById('contrastResults').innerHTML =
+        `<div style="background:#0F1218;border:1px solid #334155;border-radius:8px;padding:12px;text-align:center;grid-column:span 1;">
+            <div style="font-size:1.5rem;font-weight:800;color:white;">${ratio}:1</div>
+            <div style="font-size:0.75rem;color:#94A3B8;margin-top:4px;">Contrast Ratio</div>
+        </div>` +
+        badge(aa_normal,'AA Normal Text') +
+        badge(aaa_normal,'AAA Normal Text') +
+        badge(aa_large,'AA Large Text');
+}
+checkContrast();
 
-        function addCommentToDOM(comment) {
-            const div = document.createElement('div');
-            div.className = 'single-comment';
-            div.innerHTML = `<div class="comment-header"><strong>${comment.name}</strong><span>${comment.date}</span></div><div class="comment-body">${comment.body}</div>`;
-            commentsContainer.insertBefore(div, commentsContainer.firstChild);
-        }
-    </script>
+/* ═══════════════════════════════════════
+   COMMENTS
+═══════════════════════════════════════ */
+const commentForm = document.getElementById('commentForm');
+const commentsContainer = document.getElementById('commentsContainer');
+const PAGE_ID = 'marketing_tools_comments';
+window.addEventListener('load', () => {
+    const stored = JSON.parse(localStorage.getItem(PAGE_ID)) || [];
+    stored.forEach(c => addCommentToDOM(c));
+});
+commentForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('commentName').value;
+    const body = document.getElementById('commentBody').value;
+    const date = new Date().toLocaleDateString();
+    const obj = { name, body, date };
+    const stored = JSON.parse(localStorage.getItem(PAGE_ID)) || [];
+    stored.unshift(obj);
+    localStorage.setItem(PAGE_ID, JSON.stringify(stored));
+    addCommentToDOM(obj);
+    commentForm.reset();
+});
+function addCommentToDOM(comment) {
+    const div = document.createElement('div');
+    div.className = 'single-comment';
+    div.innerHTML = `<div class="comment-header"><strong>${comment.name}</strong><span>${comment.date}</span></div><div class="comment-body">${comment.body}</div>`;
+    commentsContainer.insertBefore(div, commentsContainer.firstChild);
+}
+</script>
 </body>
 </html>
